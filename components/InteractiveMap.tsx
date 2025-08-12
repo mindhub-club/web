@@ -1,40 +1,74 @@
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Users, Calendar, MapPin, Plus, Mail, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, Plus, Mail } from "lucide-react";
+import { EuropeMap } from "./EuropeMap";
 
 export function InteractiveMap() {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
-  const activeLocations = {
-    mallorca: {
-      name: "Mallorca",
-      country: "Spain",
-      members: "50+ Members",
-      sessions: "Weekly Sessions",
-      nextEvent: "AI & Machine Learning",
-      coordinates: { x: 280, y: 420 }, // Updated for more accurate positioning
-      status: "active"
-    },
-    munich: {
-      name: "Munich", 
+  const activeLocations = [
+    {
+      id: "munich",
+      name: "Munich",
       country: "Germany",
-      members: "80+ Members",
+      coordinates: { x: 167.5, y: 162.5 },
+      status: "active" as const,
       sessions: "Bi-weekly Sessions",
-      nextEvent: "Software Architecture",
-      coordinates: { x: 420, y: 280 },
-      status: "active"
+      nextEvent: "Software Architecture"
+    },
+    {
+      id: "mallorca",
+      name: "Mallorca",
+      country: "Spain", 
+      coordinates: { x: 140, y: 204 },
+      status: "active" as const,
+      sessions: "Bi-weekly Sessions",
+      nextEvent: "AI & Machine Learning"
     }
-  };
-
-  const potentialCities = [
-    { name: "Amsterdam", coordinates: { x: 380, y: 240 } },
-    { name: "Barcelona", coordinates: { x: 300, y: 380 } },
-    { name: "Berlin", coordinates: { x: 440, y: 240 } },
-    { name: "Paris", coordinates: { x: 320, y: 280 } },
-    { name: "Milan", coordinates: { x: 420, y: 340 } },
-    { name: "Vienna", coordinates: { x: 460, y: 300 } }
   ];
+
+  const potentialLocations = [
+    {
+      id: "barcelona",
+      name: "Barcelona",
+      country: "Spain",
+      coordinates: { x: 140, y: 190 },
+      status: "potential" as const
+    },
+    {
+      id: "berlin",
+      name: "Berlin",
+      country: "Germany",
+      coordinates: { x: 170, y: 140 },
+      status: "potential" as const
+    },
+    {
+      id: "paris",
+      name: "Paris",
+      country: "France",
+      coordinates: { x: 140, y: 160 },
+      status: "potential" as const
+    },
+    {
+      id: "milan",
+      name: "Milan",
+      country: "Italy",
+      coordinates: { x: 160, y: 180 },
+      status: "potential" as const
+    },
+    {
+      id: "vienna",
+      name: "Vienna",
+      country: "Austria",
+      coordinates: { x: 460, y: 300 },
+      status: "potential" as const
+    }
+  ];
+
+  const allLocations = [...activeLocations, ...potentialLocations];
+
+  const selectedLocationData = allLocations.find(loc => loc.id === selectedLocation);
 
   return (
     <section className="py-24 bg-muted/30">
@@ -48,105 +82,20 @@ export function InteractiveMap() {
 
         <div className="grid lg:grid-cols-3 gap-12 items-start">
           <div className="lg:col-span-2">
-            <div className="relative bg-white rounded-xl p-8 shadow-lg">
-              <svg
-                viewBox="0 0 800 600"
-                className="w-full h-auto"
-                style={{ maxHeight: "500px" }}
-              >
-                {/* Detailed Europe Map */}
-                <path
-                  d="M150 200 Q180 180 220 190 L260 185 Q300 180 340 190 L380 185 Q420 175 460 185 L500 180 Q540 175 580 190 L620 185 Q660 180 700 200 L720 220 Q730 260 720 300 L710 340 Q700 380 680 420 L660 440 Q620 460 580 465 L540 470 Q500 475 460 470 L420 475 Q380 480 340 475 L300 470 Q260 465 220 460 L180 455 Q140 435 130 400 L125 360 Q120 320 125 280 L130 240 Q135 220 150 200 Z"
-                  fill="#f8fafc"
-                  stroke="#e2e8f0"
-                  strokeWidth="2"
-                  className="transition-colors duration-300"
-                />
-
-                {/* Country borders - simplified */}
-                <path d="M200 250 Q250 240 300 250 L350 245 Q380 240 400 250" stroke="#e2e8f0" strokeWidth="1" fill="none" />
-                <path d="M300 250 Q340 280 380 300 L420 320" stroke="#e2e8f0" strokeWidth="1" fill="none" />
-                <path d="M420 250 Q460 260 500 270 L540 280" stroke="#e2e8f0" strokeWidth="1" fill="none" />
-                
-                {/* Active Location Markers */}
-                {Object.entries(activeLocations).map(([key, location]) => (
-                  <g key={key}>
-                    {/* Glow effect */}
-                    <circle
-                      cx={location.coordinates.x}
-                      cy={location.coordinates.y}
-                      r="20"
-                      fill="hsl(var(--primary))"
-                      opacity="0.1"
-                      className="animate-pulse"
-                    />
-                    <circle
-                      cx={location.coordinates.x}
-                      cy={location.coordinates.y}
-                      r="12"
-                      fill="hsl(var(--primary))"
-                      stroke="white"
-                      strokeWidth="3"
-                      className="cursor-pointer transition-all duration-300 hover:scale-110"
-                      onMouseEnter={() => setSelectedLocation(key)}
-                      onMouseLeave={() => setSelectedLocation(null)}
-                    />
-                    <circle
-                      cx={location.coordinates.x}
-                      cy={location.coordinates.y}
-                      r="6"
-                      fill="white"
-                      className="pointer-events-none"
-                    />
-                    
-                    {/* Location Label */}
-                    <text
-                      x={location.coordinates.x}
-                      y={location.coordinates.y - 25}
-                      textAnchor="middle"
-                      className="text-xs fill-current font-medium"
-                      style={{ fontSize: "12px" }}
-                    >
-                      {location.name}
-                    </text>
-                  </g>
-                ))}
-
-                {/* Potential Location Dots */}
-                {potentialCities.map((city, index) => (
-                  <g key={index} className="group cursor-pointer">
-                    <circle
-                      cx={city.coordinates.x}
-                      cy={city.coordinates.y}
-                      r="6"
-                      fill="#cbd5e1"
-                      stroke="white"
-                      strokeWidth="2"
-                      className="transition-all duration-300 group-hover:fill-primary/50 group-hover:scale-125"
-                    />
-                    <text
-                      x={city.coordinates.x}
-                      y={city.coordinates.y - 15}
-                      textAnchor="middle"
-                      className="text-xs fill-slate-400 group-hover:fill-primary transition-colors opacity-0 group-hover:opacity-100"
-                      style={{ fontSize: "10px" }}
-                    >
-                      {city.name}
-                    </text>
-                  </g>
-                ))}
-              </svg>
-              
-              <div className="absolute bottom-4 left-4 flex items-center gap-4 text-xs text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
-                  <span>Active Communities</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-slate-300 rounded-full"></div>
-                  <span>Potential Locations</span>
-                </div>
-              </div>
+            <div className="relative bg-white rounded-xl shadow-lg">
+              <EuropeMap
+                locations={allLocations}
+                selectedLocation={selectedLocation}
+                onLocationSelect={setSelectedLocation}
+                onLocationHover={setSelectedLocation}
+                className="w-full"
+                showPotentialLocations={true}
+                customStyles={{
+                  activeLocationColor: '#388cf3',
+                  potentialLocationColor: '#bcdaff',
+                                hoverColor: 'hsl(var(--primary))'
+                }}
+              />
             </div>
           </div>
 
@@ -154,31 +103,85 @@ export function InteractiveMap() {
             {/* Active Locations */}
             <div className="space-y-4">
               <h3 className="text-lg">Active Communities</h3>
-              {Object.entries(activeLocations).map(([key, location]) => (
+              {activeLocations.map((location) => (
                 <Card 
-                  key={key}
+                  key={location.id}
                   className={`cursor-pointer transition-all duration-300 ${
-                    selectedLocation === key ? 'ring-2 ring-primary bg-primary/5' : 'hover:shadow-md'
+                    selectedLocation === location.id ? 'ring-2 ring-primary bg-primary/5' : 'hover:shadow-md'
                   }`}
-                  onMouseEnter={() => setSelectedLocation(key)}
+                  onMouseEnter={() => setSelectedLocation(location.id)}
                   onMouseLeave={() => setSelectedLocation(null)}
                 >
                   <CardContent className="p-4">
-                    <div className="space-y-3">
-                      <h4 className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-primary" />
-                        {location.name}, {location.country}
-                      </h4>
-                      
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Users className="w-3 h-3" />
-                          <span>{location.members}</span>
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h4 className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-primary" />
+                          {location.name}, {location.country}
+                        </h4>
+                        
+                        <div className="flex justify-between text-sm text-muted-foreground">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="w-3 h-3" />
+                            <span>{location.sessions}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-3 h-3" />
-                          <span>{location.sessions}</span>
-                        </div>
+                      </div>
+                      <div className="flex items-center ml-4 self-center">
+                        <span
+                          className="text-2xl"
+                          title={location.country}
+                          aria-label={location.country}
+                        >
+                          {(() => {
+                            const countryToFlag = (country: string) => {
+                              const map: Record<string, string> = {
+                                "Germany": "DE",
+                                "France": "FR",
+                                "Spain": "ES",
+                                "Italy": "IT",
+                                "United Kingdom": "GB",
+                                "Netherlands": "NL",
+                                "Belgium": "BE",
+                                "Sweden": "SE",
+                                "Norway": "NO",
+                                "Denmark": "DK",
+                                "Finland": "FI",
+                                "Poland": "PL",
+                                "Austria": "AT",
+                                "Switzerland": "CH",
+                                "Portugal": "PT",
+                                "Ireland": "IE",
+                                "Czech Republic": "CZ",
+                                "Hungary": "HU",
+                                "Greece": "GR",
+                                "Romania": "RO",
+                                "Bulgaria": "BG",
+                                "Slovakia": "SK",
+                                "Slovenia": "SI",
+                                "Croatia": "HR",
+                                "Estonia": "EE",
+                                "Latvia": "LV",
+                                "Lithuania": "LT",
+                                "Luxembourg": "LU",
+                                "Iceland": "IS",
+                                "Ukraine": "UA",
+                                "Serbia": "RS",
+                                "Turkey": "TR",
+                                "Russia": "RU",
+                              };
+                              let code = map[country] || "";
+                              if (!code && country.length === 2) code = country.toUpperCase();
+                              if (!code) return "🏳️";
+                              return code
+                                .toUpperCase()
+                                .replace(/./g, char =>
+                                  String.fromCodePoint(127397 + char.charCodeAt(0))
+                                );
+                            };
+                            return countryToFlag(location.country);
+                          })()}
+                        </span>
                       </div>
                     </div>
                   </CardContent>
@@ -215,18 +218,6 @@ export function InteractiveMap() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* Coming Soon */}
-            <div className="space-y-3">
-              <h4 className="text-sm text-muted-foreground">Coming Soon</h4>
-              <div className="grid grid-cols-2 gap-2">
-                {potentialCities.slice(0, 4).map((city, index) => (
-                  <div key={index} className="p-2 bg-muted/50 rounded text-center">
-                    <span className="text-xs text-muted-foreground">{city.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

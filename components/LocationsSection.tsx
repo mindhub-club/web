@@ -8,7 +8,7 @@ export function LocationsSection() {
     {
       city: "Mallorca",
       country: "Spain",
-      image: "https://images.unsplash.com/photo-1539650116574-75c0c6d73a0e?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1617093888347-f73de2649f94?w=600&h=300&fit=crop",
       members: "50+ Members",
       sessions: "Weekly Sessions",
       timezone: "CET (UTC+1)",
@@ -23,7 +23,7 @@ export function LocationsSection() {
     {
       city: "Munich",
       country: "Germany",
-      image: "https://images.unsplash.com/photo-1595867818082-083862f3d630?w=400&h=300&fit=crop",
+      image: "https://images.unsplash.com/photo-1595867818082-083862f3d630?w=600&h=300&fit=crop",
       members: "80+ Members",
       sessions: "Bi-weekly Sessions",
       timezone: "CET (UTC+1)",

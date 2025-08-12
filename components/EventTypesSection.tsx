@@ -10,8 +10,7 @@ export function EventTypesSection() {
       email: "ai@mindhub.club",
       description: "Explore the latest in artificial intelligence, deep learning, and practical ML applications",
       color: "text-blue-600",
-      bgColor: "bg-blue-50",
-      members: "28 members"
+      bgColor: "bg-blue-50"
     },
     {
       icon: Code,
@@ -19,8 +18,7 @@ export function EventTypesSection() {
       email: "engineering@mindhub.club", 
       description: "Dive deep into software architecture, development best practices, and emerging technologies",
       color: "text-green-600", 
-      bgColor: "bg-green-50",
-      members: "45 members"
+      bgColor: "bg-green-50"
     },
     {
       icon: Palette,
@@ -28,8 +26,7 @@ export function EventTypesSection() {
       email: "design@mindhub.club",
       description: "Discuss user experience design, product design principles, and design thinking methodologies",
       color: "text-purple-600",
-      bgColor: "bg-purple-50",
-      members: "32 members"
+      bgColor: "bg-purple-50"
     },
     {
       icon: Scale,
@@ -37,8 +34,7 @@ export function EventTypesSection() {
       email: "law@mindhub.club",
       description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations",
       color: "text-amber-600",
-      bgColor: "bg-amber-50",
-      members: "19 members"
+      bgColor: "bg-amber-50"
     },
     {
       icon: Rocket,
@@ -46,8 +42,7 @@ export function EventTypesSection() {
       email: "startup@mindhub.club",
       description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies",
       color: "text-red-600",
-      bgColor: "bg-red-50",
-      members: "38 members"
+      bgColor: "bg-red-50"
     },
     {
       icon: Users,
@@ -55,8 +50,7 @@ export function EventTypesSection() {
       email: "product@mindhub.club",
       description: "Learn about product strategy, user research, agile methodologies, and product-market fit",
       color: "text-indigo-600",
-      bgColor: "bg-indigo-50",
-      members: "26 members"
+      bgColor: "bg-indigo-50"
     },
     {
       icon: Lightbulb,
@@ -64,8 +58,7 @@ export function EventTypesSection() {
       email: "innovation@mindhub.club",
       description: "Explore business innovation, strategic planning, and disruptive technologies",
       color: "text-orange-600",
-      bgColor: "bg-orange-50",
-      members: "22 members"
+      bgColor: "bg-orange-50"
     },
     {
       icon: Globe,
@@ -73,8 +66,7 @@ export function EventTypesSection() {
       email: "marketing@mindhub.club",
       description: "Discuss growth hacking, digital marketing strategies, and customer acquisition",
       color: "text-teal-600",
-      bgColor: "bg-teal-50",
-      members: "31 members"
+      bgColor: "bg-teal-50"
     }
   ];
 
@@ -96,7 +88,6 @@ export function EventTypesSection() {
                   <div className={`w-12 h-12 ${club.bgColor} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                     <club.icon className={`w-6 h-6 ${club.color}`} />
                   </div>
-                  <span className="text-xs text-muted-foreground">{club.members}</span>
                 </div>
                 
                 <div className="space-y-3">
@@ -122,7 +113,7 @@ export function EventTypesSection() {
         </div>
         
         <div className="mt-16 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-muted rounded-full">
+          <div className="inline-flex items-center gap-2 mr-5 px-6 py-3 bg-muted rounded-full">
             <span className="text-sm text-muted-foreground">Can't find your specialty? We're always expanding our club offerings.</span>
           </div>
           
