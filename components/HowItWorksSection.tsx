@@ -14,8 +14,8 @@ export function HowItWorksSection() {
     },
     {
       icon: Calendar,
-      title: "Structured Sessions",
-      description: "We provide the framework and timing to make every meeting productive and engaging."
+      title: "MindHub Framework®",
+      description: "We provide the structure and timing to make every meeting productive and engaging."
     },
     {
       icon: MapPin,
@@ -25,7 +25,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section id="framework" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl lg:text-5xl">How MindHub Works</h2>

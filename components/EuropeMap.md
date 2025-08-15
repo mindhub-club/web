@@ -14,7 +14,7 @@ const locations = [
     country: "Germany",
     coordinates: { x: 107.5, y: 162.5 },
     status: "active",
-    sessions: "Bi-weekly Sessions"
+    sessions: "Weekly Sessions"
   }
 ];
 
@@ -61,4 +61,5 @@ interface Location {
   }}
 />
 ```
+
 

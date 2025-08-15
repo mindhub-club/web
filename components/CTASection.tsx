@@ -34,22 +34,33 @@ export function CTASection() {
           </div>
 
           <div className="space-y-3">
+            <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
             <Button variant="outline" size="lg" className="w-full border-white/30 text-white hover:bg-white/10">
+
               <Plus className="w-4 h-4 mr-2" />
               Start a Chapter
             </Button>
+              </a>
             <p className="text-sm opacity-70">
               Bring MindHub to your city - contact{" "}
-              <span className="font-mono bg-white/10 px-1 rounded">expand@mindhub.club</span>
+              <span className="font-mono bg-white/10 px-1 rounded">growth@mindhub.club</span>
             </p>
           </div>
         </div>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10">
+          <Button variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={() => {
+                document.getElementById('clubs')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}>
             Browse All Clubs
           </Button>
-          <Button variant="ghost" className="text-white hover:bg-white/10">
+          <Button variant="ghost" className="text-white hover:bg-white/10" onClick={() => {
+                document.getElementById('framework')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}>
             Learn About Our Process
           </Button>
         </div>

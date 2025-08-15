@@ -27,7 +27,7 @@ function MyComponent() {
       country: "Germany",
       coordinates: { x: 107.5, y: 162.5 },
       status: "active",
-      sessions: "Bi-weekly Sessions",
+      sessions: "Weekly Sessions",
       nextEvent: "Software Architecture"
     }
   ];
@@ -113,7 +113,7 @@ const activeLocations = [
     country: "Germany",
     coordinates: { x: 107.5, y: 162.5 },
     status: "active",
-    sessions: "Bi-weekly Sessions",
+    sessions: "Weekly Sessions",
     nextEvent: "Software Architecture"
   }
 ];
@@ -136,7 +136,7 @@ const allLocations = [
     country: "Germany",
     coordinates: { x: 107.5, y: 162.5 },
     status: "active",
-    sessions: "Bi-weekly Sessions"
+    sessions: "Weekly Sessions"
   },
   // Potential locations
   {
@@ -228,4 +228,5 @@ The component is optimized for performance:
 - Modern browsers with SVG support
 - React 16.8+ (for hooks)
 - TypeScript 4.0+ (for type definitions)
+
 

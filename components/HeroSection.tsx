@@ -12,7 +12,7 @@ export function HeroSection() {
 
   return (
     <section className="bg-gradient-to-br from-primary/5 to-secondary/10 min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 mt-24 px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl lg:text-6xl tracking-tight">
@@ -26,7 +26,7 @@ export function HeroSection() {
           
           <div className="space-y-3">
             <p className="text-sm text-muted-foreground">Featured Clubs:</p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {featuredClubs.map((club, index) => (
                 <div key={index} className="flex items-center gap-3 p-3 bg-white/80 rounded-lg border border-primary/10">
                   <club.icon className={`w-5 h-5 ${club.color}`} />
@@ -37,18 +37,32 @@ export function HeroSection() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="text-lg px-8 py-6">
-              <Mail className="w-5 h-5 mr-2" />
+            <a 
+                    href="https://meetup.com/mindhub-club/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+            <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto">
               Join a Club
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
+              </a>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-6"
+              onClick={() => {
+                document.getElementById('clubs')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
               Explore All Clubs
             </Button>
           </div>
           
           <div className="flex items-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span>8 Active Clubs • 2 Locations</span>
             </div>
           </div>

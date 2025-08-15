@@ -15,7 +15,7 @@ export function BenefitsSection() {
     },
     {
       icon: FileText,
-      title: "Proven Framework",
+      title: "MindHub Framework®",
       description: "Battle-tested schemas that guide productive discussions and knowledge sharing"
     },
     {
@@ -52,7 +52,7 @@ export function BenefitsSection() {
             </div>
           </div>
           
-          <div className="relative">
+          <div className="relative order-first lg:order-none">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=500&fit=crop"
               alt="Modern collaborative workspace"

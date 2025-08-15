@@ -13,9 +13,9 @@ export function LocationsSection() {
       sessions: "Weekly Sessions",
       timezone: "CET (UTC+1)",
       nextEvents: [
-        { topic: "AI & Machine Learning", date: "Jan 15", type: "ai" },
-        { topic: "Startup Funding", date: "Jan 22", type: "startup" },
-        { topic: "UX Design Principles", date: "Jan 29", type: "design" }
+        { topic: "AI & Machine Learning", date: "Aug 20", type: "ai" },
+        { topic: "Software Engineering", date: "Aug 27", type: "engineering" },
+        { topic: "UI / UX Design", date: "Sep 4", type: "design" }
       ],
       description: "Join our vibrant Mediterranean community where tech innovation meets relaxed lifestyle. Perfect for remote workers and local professionals.",
       highlights: ["Beachside coworking spaces", "International community", "Year-round events"]
@@ -25,12 +25,10 @@ export function LocationsSection() {
       country: "Germany",
       image: "https://images.unsplash.com/photo-1595867818082-083862f3d630?w=600&h=300&fit=crop",
       members: "80+ Members",
-      sessions: "Bi-weekly Sessions",
+      sessions: "Weekly Sessions",
       timezone: "CET (UTC+1)",
       nextEvents: [
-        { topic: "Software Architecture", date: "Jan 18", type: "engineering" },
-        { topic: "Legal Tech Innovation", date: "Feb 1", type: "law" },
-        { topic: "Product Strategy", date: "Feb 15", type: "product" }
+        { topic: "AI & Machine Learning", date: "Sep 3", type: "ai" }
       ],
       description: "Be part of Germany's thriving tech ecosystem in Munich, where traditional business meets cutting-edge innovation.",
       highlights: ["Tech hub access", "Corporate partnerships", "Industry networking"]
@@ -78,7 +76,7 @@ export function LocationsSection() {
                 </div>
               </div>
               
-              <CardContent className="p-6 space-y-6">
+              <CardContent className="p-6 gap-y-6 flex flex-col flex-auto">
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
                     <h3 className="text-xl">{location.city}</h3>
@@ -129,8 +127,10 @@ export function LocationsSection() {
                   </div>
                 </div>
 
-                <Button className="w-full" variant="outline">
+                <Button className="w-full mt-auto" variant="outline">
+                <a href="mailto:join@mindhub.club?subject=Join%20the%20${location.city}%20Community">
                   Join {location.city} Community
+                </a>
                 </Button>
               </CardContent>
             </Card>

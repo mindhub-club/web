@@ -14,7 +14,7 @@ export function InteractiveMap() {
       country: "Germany",
       coordinates: { x: 167.5, y: 162.5 },
       status: "active" as const,
-      sessions: "Bi-weekly Sessions",
+      sessions: "Weekly Sessions",
       nextEvent: "Software Architecture"
     },
     {
@@ -23,7 +23,7 @@ export function InteractiveMap() {
       country: "Spain", 
       coordinates: { x: 140, y: 204 },
       status: "active" as const,
-      sessions: "Bi-weekly Sessions",
+      sessions: "Weekly Sessions",
       nextEvent: "AI & Machine Learning"
     }
   ];
@@ -204,15 +204,17 @@ export function InteractiveMap() {
                 </div>
 
                 <div className="space-y-3">
+                  <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
                   <Button className="w-full" size="sm">
                     <Mail className="w-4 h-4 mr-2" />
                     Start a Chapter
                   </Button>
+                    </a>
                   
                   <div className="text-xs text-muted-foreground">
                     Email us at{" "}
                     <span className="font-mono bg-muted px-1 rounded">
-                      expand@mindhub.club
+                      growth@mindhub.club
                     </span>
                   </div>
                 </div>

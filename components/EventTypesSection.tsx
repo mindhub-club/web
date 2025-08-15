@@ -16,7 +16,7 @@ export function EventTypesSection() {
       icon: Code,
       title: "Software Engineering",
       email: "engineering@mindhub.club", 
-      description: "Dive deep into software architecture, development best practices, and emerging technologies",
+      description: "Dive deep into software architecture, best practices, and emerging technologies",
       color: "text-green-600", 
       bgColor: "bg-green-50"
     },
@@ -71,7 +71,7 @@ export function EventTypesSection() {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section id="clubs" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl lg:text-5xl">Specialized Clubs</h2>
@@ -103,9 +103,20 @@ export function EventTypesSection() {
                   </p>
                 </div>
 
-                <Button variant="outline" size="sm" className="w-full group">
-                  Join Club
-                  <ExternalLink className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full group"
+                  asChild
+                >
+                  <a 
+                    href="https://meetup.com/mindhub-club/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Join Club
+                    <ExternalLink className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -117,8 +128,14 @@ export function EventTypesSection() {
             <span className="text-sm text-muted-foreground">Can't find your specialty? We're always expanding our club offerings.</span>
           </div>
           
-          <Button variant="outline" className="mx-auto">
-            Suggest a New Club
+          <Button
+            variant="outline"
+            className="mx-auto"
+            asChild
+          >
+            <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
+              Suggest a New Club
+            </a>
           </Button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { Mail } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
 
 export function Header() {
   return (
@@ -31,10 +31,15 @@ export function Header() {
             </a>
           </nav>
           
+          <a 
+                    href="https://meetup.com/mindhub-club/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
           <Button>
-            <Mail className="w-4 h-4 mr-2" />
             Join a Club
           </Button>
+            </a>
         </div>
       </div>
     </header>
