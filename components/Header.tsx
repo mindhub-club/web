@@ -12,7 +12,7 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-lg leading-tight">MindHub Club</span>
-              <span className="text-xs text-muted-foreground font-mono">@mindhub.club</span>
+              <span className="text-xs text-muted-foreground font-mono">@mindhub_club</span>
             </div>
           </div>
           

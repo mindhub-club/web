@@ -228,3 +228,4 @@ The component is optimized for performance:
 - Modern browsers with SVG support
 - React 16.8+ (for hooks)
 - TypeScript 4.0+ (for type definitions)
+
