@@ -230,3 +230,4 @@ The component is optimized for performance:
 - TypeScript 4.0+ (for type definitions)
 
 
+
