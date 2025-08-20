@@ -63,6 +63,12 @@ function AppContent() {
                 >
                   {t('footer.terms')}
                 </button>
+                <button 
+                  onClick={() => navigate('/impressum')} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {t('footer.impressum')}
+                </button>
                 <a href="mailto:contact@mindhub.club" className="hover:text-foreground transition-colors">{t('footer.contact')}</a>
               </div>
             </div>

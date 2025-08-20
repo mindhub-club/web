@@ -1,6 +1,7 @@
 import { useState, useEffect, type ReactNode } from 'react';
 import { PrivacyPage } from './PrivacyPage';
 import { TermsPage } from './TermsPage';
+import { ImpressumPage } from './ImpressumPage';
 
 interface RouterProps {
   children: ReactNode;
@@ -20,6 +21,8 @@ export function SimpleRouter({ children }: RouterProps) {
       setCurrentPage('privacy');
     } else if (localPath === '/terms') {
       setCurrentPage('terms');
+    } else if (localPath === '/impressum') {
+      setCurrentPage('impressum');
     } else {
       setCurrentPage('home');
     }
@@ -32,6 +35,8 @@ export function SimpleRouter({ children }: RouterProps) {
       setCurrentPage('privacy');
     } else if (path === '/terms') {
       setCurrentPage('terms');
+    } else if (path === '/impressum') {
+      setCurrentPage('impressum');
     } else {
       setCurrentPage('home');
     }
@@ -48,6 +53,8 @@ export function SimpleRouter({ children }: RouterProps) {
         setCurrentPage('privacy');
       } else if (localPath === '/terms') {
         setCurrentPage('terms');
+      } else if (localPath === '/impressum') {
+        setCurrentPage('impressum');
       } else {
         setCurrentPage('home');
       }
@@ -63,6 +70,10 @@ export function SimpleRouter({ children }: RouterProps) {
 
   if (currentPage === 'terms') {
     return <TermsPage />;
+  }
+
+  if (currentPage === 'impressum') {
+    return <ImpressumPage />;
   }
 
   return <>{children}</>;

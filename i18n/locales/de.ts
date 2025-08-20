@@ -132,7 +132,8 @@ export default {
     copyright: "© 2025 MindHub Club. Alle Rechte vorbehalten.",
     privacy: "Datenschutz",
     terms: "Nutzungsbedingungen",
-    contact: "Kontakt"
+    contact: "Kontakt",
+    impressum: "Impressum"
   },
   benefits: {
     title: "Was wir bieten",
