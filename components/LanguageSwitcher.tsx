@@ -9,7 +9,7 @@ import {
 
 export function LanguageSwitcher() {
   const { locale, setLocale, t } = useI18n();
-  const currentLabel = locale === 'en' ? t('header.lang.en') : t('header.lang.es');
+  const currentLabel = locale === 'en' ? t('header.lang.en') : locale === 'es' ? t('header.lang.es') : 'DE';
 
   return (
     <DropdownMenu modal={false}>
@@ -25,6 +25,9 @@ export function LanguageSwitcher() {
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setLocale('es')} disabled={locale === 'es'}>
           {t('header.lang.es')}
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setLocale('de')} disabled={locale === 'de'}>
+          DE
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

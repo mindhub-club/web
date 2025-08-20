@@ -23,6 +23,10 @@ export default {
     ctaBody: "Ayúdanos a ampliar nuestra red. Buscamos líderes comunitarios apasionados para abrir capítulos de MindHub por Europa.",
     ctaButton: "Abrir un club",
     emailLead: "Escríbenos a",
+    cities: {
+      munich: "Múnich",
+      mallorca: "Mallorca"
+    },
     countries: {
       germany: "Alemania",
       spain: "España",

@@ -13,8 +13,9 @@ export function SimpleRouter({ children }: RouterProps) {
   useEffect(() => {
     const path = window.location.pathname;
     const isEs = path === '/es' || path.startsWith('/es/');
-    setLocalePrefix(isEs ? '/es' : '');
-    const localPath = isEs ? path.slice(3) || '/' : path;
+    const isDe = path === '/de' || path.startsWith('/de/');
+    setLocalePrefix(isEs ? '/es' : isDe ? '/de' : '');
+    const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : path;
     if (localPath === '/privacy') {
       setCurrentPage('privacy');
     } else if (localPath === '/terms') {
@@ -40,8 +41,9 @@ export function SimpleRouter({ children }: RouterProps) {
     const handlePopState = () => {
       const path = window.location.pathname;
       const isEs = path === '/es' || path.startsWith('/es/');
-      setLocalePrefix(isEs ? '/es' : '');
-      const localPath = isEs ? path.slice(3) || '/' : path;
+      const isDe = path === '/de' || path.startsWith('/de/');
+      setLocalePrefix(isEs ? '/es' : isDe ? '/de' : '');
+      const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : path;
       if (localPath === '/privacy') {
         setCurrentPage('privacy');
       } else if (localPath === '/terms') {

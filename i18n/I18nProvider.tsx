@@ -1,8 +1,9 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import en from './locales/en';
 import es from './locales/es';
+import de from './locales/de';
 
-type LocaleKey = 'en' | 'es';
+type LocaleKey = 'en' | 'es' | 'de';
 
 type Messages = typeof en;
 
@@ -16,23 +17,31 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
-const allMessages: Record<LocaleKey, Messages> = { en, es };
+const allMessages: Record<LocaleKey, Messages> = { en, es, de };
 
 function detectLocaleFromPathname(pathname: string): LocaleKey {
-  return pathname === '/es' || pathname.startsWith('/es/') ? 'es' : 'en';
+  if (pathname === '/es' || pathname.startsWith('/es/')) return 'es';
+  if (pathname === '/de' || pathname.startsWith('/de/')) return 'de';
+  return 'en';
 }
 
 function buildPathForLocale(pathname: string, locale: LocaleKey): string {
-  // Remove existing /es prefix if present
-  const withoutLocale = pathname === '/es'
-    ? '/'
-    : pathname.startsWith('/es/')
-      ? pathname.slice(3) || '/'
-      : pathname || '/';
-  if (locale === 'es') {
-    return withoutLocale === '/' ? '/es' : `/es${withoutLocale}`;
+  // Remove existing locale prefix if present
+  let withoutLocale = pathname || '/';
+  const prefixes = ['/es', '/de'];
+  for (const p of prefixes) {
+    if (withoutLocale === p) {
+      withoutLocale = '/';
+      break;
+    }
+    if (withoutLocale.startsWith(p + '/')) {
+      withoutLocale = withoutLocale.slice(p.length) || '/';
+      break;
+    }
   }
-  return withoutLocale;
+  if (locale === 'en') return withoutLocale;
+  const prefix = `/${locale}`;
+  return withoutLocale === '/' ? prefix : `${prefix}${withoutLocale}`;
 }
 
 function getByPath(obj: Record<string, any>, path: string): string | undefined {

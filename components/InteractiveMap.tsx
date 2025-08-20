@@ -12,9 +12,9 @@ export function InteractiveMap() {
   const activeLocations = [
     {
       id: "munich",
-      name: "Munich",
+      name: t('map.cities.munich'),
       country: "DE",
-      countryName: t('map.locations.munich.country'),
+      countryName: t('map.countries.germany'),
       coordinates: { x: 167.5, y: 162.5 },
       status: "active" as const,
       sessions: t('map.locations.munich.sessions'),
@@ -22,9 +22,9 @@ export function InteractiveMap() {
     },
     {
       id: "mallorca",
-      name: "Mallorca",
+      name: t('map.cities.mallorca'),
       country: "ES",
-      countryName: t('map.locations.mallorca.country'),
+      countryName: t('map.countries.spain'),
       coordinates: { x: 140, y: 204 },
       status: "active" as const,
       sessions: t('map.locations.mallorca.sessions'),
