@@ -3,28 +3,30 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Calendar, MapPin, Plus, Mail } from "lucide-react";
 import { EuropeMap } from "./EuropeMap";
+import { useI18n } from "../i18n/I18nProvider";
 
 export function InteractiveMap() {
+  const { t } = useI18n();
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   const activeLocations = [
     {
       id: "munich",
       name: "Munich",
-      country: "Germany",
+      country: "DE",
       coordinates: { x: 167.5, y: 162.5 },
       status: "active" as const,
-      sessions: "Weekly Sessions",
-      nextEvent: "Software Architecture"
+      sessions: t('map.locations.munich.sessions'),
+      nextEvent: t('map.locations.munich.nextEvent')
     },
     {
       id: "mallorca",
       name: "Mallorca",
-      country: "Spain", 
+      country: "ES", 
       coordinates: { x: 140, y: 204 },
       status: "active" as const,
-      sessions: "Weekly Sessions",
-      nextEvent: "AI & Machine Learning"
+      sessions: t('map.locations.mallorca.sessions'),
+      nextEvent: t('map.locations.mallorca.nextEvent')
     }
   ];
 
@@ -32,35 +34,35 @@ export function InteractiveMap() {
     {
       id: "barcelona",
       name: "Barcelona",
-      country: "Spain",
+      country: "ES",
       coordinates: { x: 140, y: 190 },
       status: "potential" as const
     },
     {
       id: "berlin",
       name: "Berlin",
-      country: "Germany",
+      country: "DE",
       coordinates: { x: 170, y: 140 },
       status: "potential" as const
     },
     {
       id: "paris",
       name: "Paris",
-      country: "France",
+      country: "FR",
       coordinates: { x: 140, y: 160 },
       status: "potential" as const
     },
     {
       id: "milan",
       name: "Milan",
-      country: "Italy",
+      country: t('map.countries.italy'),
       coordinates: { x: 160, y: 180 },
       status: "potential" as const
     },
     {
       id: "vienna",
       name: "Vienna",
-      country: "Austria",
+      country: "AT",
       coordinates: { x: 460, y: 300 },
       status: "potential" as const
     }
@@ -74,9 +76,9 @@ export function InteractiveMap() {
     <section className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl lg:text-5xl">Our European Network</h2>
+          <h2 className="text-3xl lg:text-5xl">{t('map.title')}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Currently active in 2 locations with plans to expand across Europe. Help us bring MindHub to your city.
+            {t('map.subtitle')}
           </p>
         </div>
 
@@ -102,7 +104,7 @@ export function InteractiveMap() {
           <div className="space-y-6">
             {/* Active Locations */}
             <div className="space-y-4">
-              <h3 className="text-lg">Active Communities</h3>
+              <h3 className="text-lg">{t('map.active')}</h3>
               {activeLocations.map((location) => (
                 <Card 
                   key={location.id}
@@ -197,9 +199,9 @@ export function InteractiveMap() {
                 </div>
                 
                 <div className="space-y-2">
-                  <h4 className="text-lg">Bring MindHub to Your City</h4>
+                  <h4 className="text-lg">{t('map.ctaTitle')}</h4>
                   <p className="text-sm text-muted-foreground">
-                    Help us expand our network. We're looking for passionate community leaders to establish MindHub chapters across Europe.
+                    {t('map.ctaBody')}
                   </p>
                 </div>
 
@@ -207,12 +209,12 @@ export function InteractiveMap() {
                   <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
                   <Button className="w-full" size="sm">
                     <Mail className="w-4 h-4 mr-2" />
-                    Start a Chapter
+                    {t('map.ctaButton')}
                   </Button>
                     </a>
                   
                   <div className="text-xs text-muted-foreground">
-                    Email us at{" "}
+                    {t('map.emailLead')} {" "}
                     <span className="font-mono bg-muted px-1 rounded">
                       growth@mindhub.club
                     </span>

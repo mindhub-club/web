@@ -1,8 +1,10 @@
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Brain, Code, Palette, Scale, Rocket, Users, Mail } from "lucide-react";
+import { Brain, Code, Palette, Rocket, Users } from "lucide-react";
+import { useI18n } from "../i18n/I18nProvider";
 
 export function HeroSection() {
+  const { t } = useI18n();
   const featuredClubs = [
     { icon: Brain, email: "ai@mindhub.club", color: "text-blue-600" },
     { icon: Code, email: "engineering@mindhub.club", color: "text-green-600" },
@@ -16,16 +18,15 @@ export function HeroSection() {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl lg:text-6xl tracking-tight">
-              Welcome to <span className="text-primary">MindHub Club</span>
+              {t('hero.welcome')} <span className="text-primary">{t('hero.brand')}</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-lg">
-              Join specialized professional clubs where experts gather to learn collaboratively. 
-              From <strong>AI</strong> to <strong>Design</strong>, each club has its own identity and dedicated community.
+              {t('hero.subtitle')}
             </p>
           </div>
           
           <div className="space-y-3">
-            <p className="text-sm text-muted-foreground">Featured Clubs:</p>
+            <p className="text-sm text-muted-foreground">{t('hero.featured')}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {featuredClubs.map((club, index) => (
                 <div key={index} className="flex items-center gap-3 p-3 bg-white/80 rounded-lg border border-primary/10">
@@ -43,7 +44,7 @@ export function HeroSection() {
                     rel="noopener noreferrer"
                   >
             <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto">
-              Join a Club
+              {t('hero.join')}
             </Button>
               </a>
             <Button 
@@ -56,14 +57,14 @@ export function HeroSection() {
                 });
               }}
             >
-              Explore All Clubs
+              {t('hero.explore')}
             </Button>
           </div>
           
           <div className="flex items-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>8 Active Clubs • 2 Locations</span>
+              <span>{t('hero.stats')}</span>
             </div>
           </div>
         </div>

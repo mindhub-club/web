@@ -1,70 +1,72 @@
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Brain, Code, Palette, Scale, Rocket, Users, Lightbulb, Globe, Mail, ExternalLink } from "lucide-react";
+import { useI18n } from "../i18n/I18nProvider";
 
 export function EventTypesSection() {
+  const { t } = useI18n();
   const clubs = [
     {
       icon: Brain,
-      title: "AI & Machine Learning",
+      titleKey: 'clubs.ai.title',
       email: "ai@mindhub.club",
-      description: "Explore the latest in artificial intelligence, deep learning, and practical ML applications",
+      descriptionKey: 'clubs.ai.description',
       color: "text-blue-600",
       bgColor: "bg-blue-50"
     },
     {
       icon: Code,
-      title: "Software Engineering",
+      titleKey: 'clubs.engineering.title',
       email: "engineering@mindhub.club", 
-      description: "Dive deep into software architecture, best practices, and emerging technologies",
+      descriptionKey: 'clubs.engineering.description',
       color: "text-green-600", 
       bgColor: "bg-green-50"
     },
     {
       icon: Palette,
-      title: "Design & UX",
+      titleKey: 'clubs.design.title',
       email: "design@mindhub.club",
-      description: "Discuss user experience design, product design principles, and design thinking methodologies",
+      descriptionKey: 'clubs.design.description',
       color: "text-purple-600",
       bgColor: "bg-purple-50"
     },
     {
       icon: Scale,
-      title: "Law & Legal Tech",
+      titleKey: 'clubs.law.title',
       email: "law@mindhub.club",
-      description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations",
+      descriptionKey: 'clubs.law.description',
       color: "text-amber-600",
       bgColor: "bg-amber-50"
     },
     {
       icon: Rocket,
-      title: "Startup & Entrepreneurship",
+      titleKey: 'clubs.startup.title',
       email: "startup@mindhub.club",
-      description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies",
+      descriptionKey: 'clubs.startup.description',
       color: "text-red-600",
       bgColor: "bg-red-50"
     },
     {
       icon: Users,
-      title: "Product Management",
+      titleKey: 'clubs.product.title',
       email: "product@mindhub.club",
-      description: "Learn about product strategy, user research, agile methodologies, and product-market fit",
+      descriptionKey: 'clubs.product.description',
       color: "text-indigo-600",
       bgColor: "bg-indigo-50"
     },
     {
       icon: Lightbulb,
-      title: "Innovation & Strategy",
+      titleKey: 'clubs.innovation.title',
       email: "innovation@mindhub.club",
-      description: "Explore business innovation, strategic planning, and disruptive technologies",
+      descriptionKey: 'clubs.innovation.description',
       color: "text-orange-600",
       bgColor: "bg-orange-50"
     },
     {
       icon: Globe,
-      title: "Digital Marketing",
+      titleKey: 'clubs.marketing.title',
       email: "marketing@mindhub.club",
-      description: "Discuss growth hacking, digital marketing strategies, and customer acquisition",
+      descriptionKey: 'clubs.marketing.description',
       color: "text-teal-600",
       bgColor: "bg-teal-50"
     }
@@ -74,9 +76,9 @@ export function EventTypesSection() {
     <section id="clubs" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl lg:text-5xl">Specialized Clubs</h2>
+          <h2 className="text-3xl lg:text-5xl">{t('events.title')}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join focused communities organized around your professional interests. Each club has its own identity and dedicated space for deep, specialized discussions.
+            {t('events.blurb')}
           </p>
         </div>
         
@@ -91,7 +93,7 @@ export function EventTypesSection() {
                 </div>
                 
                 <div className="space-y-3">
-                  <h3 className="text-lg">{club.title}</h3>
+                  <h3 className="text-lg">{t(club.titleKey as string)}</h3>
                   
                   <div className="flex items-center gap-2 p-2 bg-muted/50 rounded-lg">
                     <Mail className="w-4 h-4 text-muted-foreground" />
@@ -99,7 +101,7 @@ export function EventTypesSection() {
                   </div>
                   
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {club.description}
+                    {t(club.descriptionKey as string)}
                   </p>
                 </div>
 
@@ -114,7 +116,7 @@ export function EventTypesSection() {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    Join Club
+                    {t('events.joinClub')}
                     <ExternalLink className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </Button>
@@ -125,7 +127,7 @@ export function EventTypesSection() {
         
         <div className="mt-16 text-center space-y-6">
           <div className="inline-flex items-center gap-2 mr-5 px-6 py-3 bg-muted rounded-full">
-            <span className="text-sm text-muted-foreground">Can't find your specialty? We're always expanding our club offerings.</span>
+            <span className="text-sm text-muted-foreground">{t('events.notFound')}</span>
           </div>
           
           <Button
@@ -134,7 +136,7 @@ export function EventTypesSection() {
             asChild
           >
             <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
-              Suggest a New Club
+              {t('events.suggest')}
             </a>
           </Button>
         </div>

@@ -1,26 +1,28 @@
 import { Users, RotateCcw, Calendar, MapPin } from "lucide-react";
+import { useI18n } from "../i18n/I18nProvider";
 
 export function HowItWorksSection() {
+  const { t } = useI18n();
   const steps = [
     {
       icon: Users,
-      title: "Small Groups",
-      description: "Join intimate groups of professionals who share your interests and career focus."
+      title: t('how.steps.smallGroups.title'),
+      description: t('how.steps.smallGroups.desc')
     },
     {
       icon: RotateCcw,
-      title: "Rotative Learning",
-      description: "Everyone takes turns leading discussions. No teachers - we all learn from each other."
+      title: t('how.steps.rotativeLearning.title'),
+      description: t('how.steps.rotativeLearning.desc')
     },
     {
       icon: Calendar,
-      title: "MindHub Framework®",
-      description: "We provide the structure and timing to make every meeting productive and engaging."
+      title: t('how.steps.framework.title'),
+      description: t('how.steps.framework.desc')
     },
     {
       icon: MapPin,
-      title: "Physical Spaces",
-      description: "Meet in person at our dedicated spaces in Mallorca and Munich."
+      title: t('how.steps.physicalSpaces.title'),
+      description: t('how.steps.physicalSpaces.desc')
     }
   ];
 
@@ -28,9 +30,9 @@ export function HowItWorksSection() {
     <section id="framework" className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl lg:text-5xl">How MindHub Works</h2>
+          <h2 className="text-3xl lg:text-5xl">{t('how.title')}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our self-managed learning approach puts you in control of your professional development
+            {t('how.subtitle')}
           </p>
         </div>
         

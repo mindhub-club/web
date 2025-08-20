@@ -2,36 +2,38 @@ import { Card, CardContent } from "./ui/card";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { MapPin, Users, Calendar, Clock, Globe } from "lucide-react";
 import { Button } from "./ui/button";
+import { useI18n } from "../i18n/I18nProvider";
 
 export function LocationsSection() {
+  const { t, get } = useI18n();
   const locations = [
     {
       city: "Mallorca",
       country: "Spain",
       image: "https://images.unsplash.com/photo-1617093888347-f73de2649f94?w=600&h=300&fit=crop",
-      members: "50+ Members",
-      sessions: "Weekly Sessions",
+      members: t('locationsData.mallorca.members'),
+      sessions: t('locationsData.mallorca.sessions'),
       timezone: "CET (UTC+1)",
       nextEvents: [
         { topic: "AI & Machine Learning", date: "Aug 20", type: "ai" },
         { topic: "Software Engineering", date: "Aug 27", type: "engineering" },
         { topic: "UI / UX Design", date: "Sep 4", type: "design" }
       ],
-      description: "Join our vibrant Mediterranean community where tech innovation meets relaxed lifestyle. Perfect for remote workers and local professionals.",
-      highlights: ["Beachside coworking spaces", "International community", "Year-round events"]
+      description: t('locationsData.mallorca.description'),
+      highlights: (get<string[]>('locationsData.mallorca.highlights') || [])
     },
     {
       city: "Munich",
       country: "Germany",
       image: "https://images.unsplash.com/photo-1595867818082-083862f3d630?w=600&h=300&fit=crop",
-      members: "80+ Members",
-      sessions: "Weekly Sessions",
+      members: t('locationsData.munich.members'),
+      sessions: t('locationsData.munich.sessions'),
       timezone: "CET (UTC+1)",
       nextEvents: [
         { topic: "AI & Machine Learning", date: "Sep 3", type: "ai" }
       ],
-      description: "Be part of Germany's thriving tech ecosystem in Munich, where traditional business meets cutting-edge innovation.",
-      highlights: ["Tech hub access", "Corporate partnerships", "Industry networking"]
+      description: t('locationsData.munich.description'),
+      highlights: (get<string[]>('locationsData.munich.highlights') || [])
     }
   ];
 
@@ -51,9 +53,9 @@ export function LocationsSection() {
     <section className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl lg:text-5xl">Community Spotlight</h2>
+          <h2 className="text-3xl lg:text-5xl">{t('locations.title')}</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Get to know our active communities and discover what makes each location unique
+            {t('locations.subtitle')}
           </p>
         </div>
         
@@ -100,7 +102,7 @@ export function LocationsSection() {
                 <div className="space-y-3">
                   <h4 className="text-sm font-medium flex items-center gap-2">
                     <Clock className="w-4 h-4" />
-                    Upcoming Events
+                    {t('locations.upcoming')}
                   </h4>
                   <div className="space-y-2">
                     {location.nextEvents.map((event, eventIndex) => (
@@ -117,7 +119,7 @@ export function LocationsSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium">Community Highlights</h4>
+                  <h4 className="text-sm font-medium">{t('locations.highlights')}</h4>
                   <div className="flex flex-wrap gap-2">
                     {location.highlights.map((highlight, highlightIndex) => (
                       <span key={highlightIndex} className="text-xs px-2 py-1 bg-muted rounded-full">
@@ -128,9 +130,9 @@ export function LocationsSection() {
                 </div>
 
                 <Button className="w-full mt-auto" variant="outline">
-                <a href="mailto:join@mindhub.club?subject=Join%20the%20${location.city}%20Community">
-                  Join {location.city} Community
-                </a>
+                  <a href={`mailto:join@mindhub.club?subject=Join%20the%20${location.city}%20Community`}>
+                    {t('locations.joinButton').replace('{city}', location.city)}
+                  </a>
                 </Button>
               </CardContent>
             </Card>

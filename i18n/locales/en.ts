@@ -1,0 +1,163 @@
+export default {
+  header: {
+    brand: "MindHub Club",
+    handle: "@mindhub_club",
+    nav: {
+      howItWorks: "How It Works",
+      clubs: "Clubs",
+      locations: "Locations",
+      benefits: "Benefits"
+    },
+    joinClub: "Join a Club",
+    lang: {
+      en: "EN",
+      es: "ES"
+    }
+  },
+  map: {
+    title: "Our European Network",
+    subtitle: "Currently active in 2 locations with plans to expand across Europe. Help us bring MindHub to your city.",
+    active: "Active Communities",
+    ctaTitle: "Bring MindHub to Your City",
+    ctaBody: "Help us expand our network. We're looking for passionate community leaders to establish MindHub chapters across Europe.",
+    ctaButton: "Start a Chapter",
+    emailLead: "Email us at",
+    countries: {
+      germany: "Germany",
+      spain: "Spain",
+      france: "France",
+      italy: "Italy",
+      austria: "Austria"
+    },
+    locations: {
+      mallorca: {
+        sessions: "Weekly Sessions",
+        nextEvent: "AI & Machine Learning"
+      },
+      munich: {
+        sessions: "Weekly Sessions",
+        nextEvent: "Software Architecture"
+      }
+    }
+  },
+  locations: {
+    title: "Community Spotlight",
+    subtitle: "Get to know our active communities and discover what makes each location unique",
+    upcoming: "Upcoming Events",
+    highlights: "Community Highlights",
+    joinButton: "Join {city} Community"
+  },
+  hero: {
+    welcome: "Welcome to",
+    brand: "MindHub Club",
+    subtitle: "Join specialized professional clubs where experts gather to learn collaboratively. From AI to Design, each club has its own identity and dedicated community.",
+    featured: "Featured Clubs:",
+    join: "Join a Club",
+    explore: "Explore All Clubs",
+    stats: "8 Active Clubs • 2 Locations"
+  },
+  cta: {
+    heading: "Ready to Join a Club?",
+    subheading: "Connect with like-minded professionals in your specialty area. Join an existing club or help us start one in your city.",
+    emailPlaceholder: "Enter your email address",
+    join: "Join",
+    existing: "Join our existing clubs in Mallorca & Munich",
+    start: "Start a Chapter",
+    bring: "Bring MindHub to your city - contact",
+    browse: "Browse All Clubs",
+    learn: "Learn About Our Process"
+  },
+  how: {
+    title: "How MindHub Works",
+    subtitle: "Our self-managed learning approach puts you in control of your professional development",
+    steps: {
+      smallGroups: { title: "Small Groups", desc: "Join intimate groups of professionals who share your interests and career focus." },
+      rotativeLearning: { title: "Rotative Learning", desc: "Everyone takes turns leading discussions. No teachers - we all learn from each other." },
+      framework: { title: "MindHub Framework®", desc: "We provide the structure and timing to make every meeting productive and engaging." },
+      physicalSpaces: { title: "Physical Spaces", desc: "Meet in person at our dedicated spaces in Mallorca and Munich." }
+    }
+  },
+  events: {
+    title: "Specialized Clubs",
+    blurb: "Join focused communities organized around your professional interests. Each club has its own identity and dedicated space for deep, specialized discussions.",
+    joinClub: "Join Club",
+    suggest: "Suggest a New Club",
+    notFound: "Can't find your specialty? We're always expanding our club offerings."
+  },
+  clubs: {
+    ai: {
+      title: "AI & Machine Learning",
+      description: "Explore the latest in artificial intelligence, deep learning, and practical ML applications"
+    },
+    engineering: {
+      title: "Software Engineering",
+      description: "Dive deep into software architecture, best practices, and emerging technologies"
+    },
+    design: {
+      title: "Design & UX",
+      description: "Discuss user experience design, product design principles, and design thinking methodologies"
+    },
+    law: {
+      title: "Law & Legal Tech",
+      description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations"
+    },
+    startup: {
+      title: "Startup & Entrepreneurship",
+      description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies"
+    },
+    product: {
+      title: "Product Management",
+      description: "Learn about product strategy, user research, agile methodologies, and product-market fit"
+    },
+    innovation: {
+      title: "Innovation & Strategy",
+      description: "Explore business innovation, strategic planning, and disruptive technologies"
+    },
+    marketing: {
+      title: "Digital Marketing",
+      description: "Discuss growth hacking, digital marketing strategies, and customer acquisition"
+    }
+  },
+  footer: {
+    copyright: "© 2025 MindHub Club. All rights reserved.",
+    privacy: "Privacy",
+    terms: "Terms",
+    contact: "Contact"
+  },
+  benefits: {
+    title: "What We Provide",
+    subtitle: "MindHub takes care of the logistics so you can focus on what matters most - learning and growing together.",
+    items: {
+      dedicatedSpaces: {
+        title: "Dedicated Spaces",
+        description: "Professional meeting environments designed for collaborative learning"
+      },
+      structuredTime: {
+        title: "Structured Time",
+        description: "Optimized session timing that maximizes learning and engagement"
+      },
+      framework: {
+        title: "MindHub Framework®",
+        description: "Battle-tested schemas that guide productive discussions and knowledge sharing"
+      },
+      network: {
+        title: "Professional Network",
+        description: "Connect with like-minded professionals in your field and beyond"
+      }
+    }
+  },
+  locationsData: {
+    mallorca: {
+      members: "50+ Members",
+      sessions: "Weekly Sessions",
+      description: "Join our vibrant Mediterranean community where tech innovation meets relaxed lifestyle. Perfect for remote workers and local professionals.",
+      highlights: ["Beachside coworking spaces", "International community", "Year-round events"]
+    },
+    munich: {
+      members: "80+ Members",
+      sessions: "Weekly Sessions",
+      description: "Be part of Germany's thriving tech ecosystem in Munich, where traditional business meets cutting-edge innovation.",
+      highlights: ["Tech hub access", "Corporate partnerships", "Industry networking"]
+    }
+  }
+} as const;

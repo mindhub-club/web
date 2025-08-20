@@ -7,8 +7,10 @@ import { BenefitsSection } from "./components/BenefitsSection";
 import { LocationsSection } from "./components/LocationsSection";
 import { CTASection } from "./components/CTASection";
 import { SimpleRouter, navigate } from "./components/SimpleRouter";
+import { I18nProvider, useI18n } from "./i18n/I18nProvider";
 
-export default function App() {
+function AppContent() {
+  const { t } = useI18n();
   return (
     <SimpleRouter>
       <div className="min-h-screen">
@@ -45,7 +47,7 @@ export default function App() {
                 <div className="w-6 h-6 bg-primary rounded-md flex items-center justify-center">
                   <span className="text-primary-foreground text-xs">MH</span>
                 </div>
-                <span className="text-muted-foreground">© 2025 MindHub Club. All rights reserved.</span>
+                <span className="text-muted-foreground">{t('footer.copyright')}</span>
               </div>
               
               <div className="flex gap-6 text-sm text-muted-foreground">
@@ -53,20 +55,28 @@ export default function App() {
                   onClick={() => navigate('/privacy')} 
                   className="hover:text-foreground transition-colors"
                 >
-                  Privacy
+                  {t('footer.privacy')}
                 </button>
                 <button 
                   onClick={() => navigate('/terms')} 
                   className="hover:text-foreground transition-colors"
                 >
-                  Terms
+                  {t('footer.terms')}
                 </button>
-                <a href="mailto:contact@mindhub.club" className="hover:text-foreground transition-colors">Contact</a>
+                <a href="mailto:contact@mindhub.club" className="hover:text-foreground transition-colors">{t('footer.contact')}</a>
               </div>
             </div>
           </div>
         </footer>
       </div>
     </SimpleRouter>
+  );
+}
+
+export default function App() {
+  return (
+    <I18nProvider>
+      <AppContent />
+    </I18nProvider>
   );
 }

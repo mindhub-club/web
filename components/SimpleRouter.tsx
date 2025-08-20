@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type ReactNode } from 'react';
 import { PrivacyPage } from './PrivacyPage';
 import { TermsPage } from './TermsPage';
 
 interface RouterProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function SimpleRouter({ children }: RouterProps) {
   const [currentPage, setCurrentPage] = useState<string>('home');
+  const [localePrefix, setLocalePrefix] = useState<string>('');
 
   useEffect(() => {
     const path = window.location.pathname;
-    if (path === '/privacy') {
+    const isEs = path === '/es' || path.startsWith('/es/');
+    setLocalePrefix(isEs ? '/es' : '');
+    const localPath = isEs ? path.slice(3) || '/' : path;
+    if (localPath === '/privacy') {
       setCurrentPage('privacy');
-    } else if (path === '/terms') {
+    } else if (localPath === '/terms') {
       setCurrentPage('terms');
     } else {
       setCurrentPage('home');
@@ -21,7 +25,8 @@ export function SimpleRouter({ children }: RouterProps) {
   }, []);
 
   const navigate = (path: string) => {
-    window.history.pushState({}, '', path);
+    const full = `${localePrefix}${path === '/' ? '' : path}` || '/';
+    window.history.pushState({}, '', full);
     if (path === '/privacy') {
       setCurrentPage('privacy');
     } else if (path === '/terms') {
@@ -34,9 +39,12 @@ export function SimpleRouter({ children }: RouterProps) {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname;
-      if (path === '/privacy') {
+      const isEs = path === '/es' || path.startsWith('/es/');
+      setLocalePrefix(isEs ? '/es' : '');
+      const localPath = isEs ? path.slice(3) || '/' : path;
+      if (localPath === '/privacy') {
         setCurrentPage('privacy');
-      } else if (path === '/terms') {
+      } else if (localPath === '/terms') {
         setCurrentPage('terms');
       } else {
         setCurrentPage('home');
@@ -60,6 +68,10 @@ export function SimpleRouter({ children }: RouterProps) {
 
 // Export the navigate function for use in other components
 export const navigate = (path: string) => {
-  window.history.pushState({}, '', path);
+  const current = window.location.pathname;
+  const isEs = current === '/es' || current.startsWith('/es/');
+  const prefix = isEs ? '/es' : '';
+  const full = `${prefix}${path === '/' ? '' : path}` || '/';
+  window.history.pushState({}, '', full);
   window.dispatchEvent(new PopStateEvent('popstate'));
 };
