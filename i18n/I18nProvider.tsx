@@ -5,7 +5,8 @@ import de from './locales/de';
 
 type LocaleKey = 'en' | 'es' | 'de';
 
-type Messages = typeof en;
+// Use a flexible message shape to support multiple locales with different string literals
+type Messages = Record<string, unknown>;
 
 type I18nContextValue = {
   locale: LocaleKey;
@@ -17,7 +18,11 @@ type I18nContextValue = {
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 
-const allMessages: Record<LocaleKey, Messages> = { en, es, de };
+const allMessages: Record<LocaleKey, Messages> = {
+  en: en as unknown as Messages,
+  es: es as unknown as Messages,
+  de: de as unknown as Messages,
+};
 
 function detectLocaleFromPathname(pathname: string): LocaleKey {
   if (pathname === '/es' || pathname.startsWith('/es/')) return 'es';
