@@ -14,6 +14,7 @@ export function InteractiveMap() {
       id: "munich",
       name: "Munich",
       country: "DE",
+      countryName: t('map.locations.munich.country'),
       coordinates: { x: 167.5, y: 162.5 },
       status: "active" as const,
       sessions: t('map.locations.munich.sessions'),
@@ -22,7 +23,8 @@ export function InteractiveMap() {
     {
       id: "mallorca",
       name: "Mallorca",
-      country: "ES", 
+      country: "ES",
+      countryName: t('map.locations.mallorca.country'),
       coordinates: { x: 140, y: 204 },
       status: "active" as const,
       sessions: t('map.locations.mallorca.sessions'),
@@ -119,7 +121,7 @@ export function InteractiveMap() {
                       <div className="flex-1">
                         <h4 className="flex items-center gap-2">
                           <MapPin className="w-4 h-4 text-primary" />
-                          {location.name}, {location.country}
+                          {location.name}, {location.countryName}
                         </h4>
                         
                         <div className="flex justify-between text-sm text-muted-foreground">
@@ -132,8 +134,8 @@ export function InteractiveMap() {
                       <div className="flex items-center ml-4 self-center">
                         <span
                           className="text-2xl"
-                          title={location.country}
-                          aria-label={location.country}
+                          title={location.countryName}
+                          aria-label={location.countryName}
                         >
                           {(() => {
                             const countryToFlag = (country: string) => {

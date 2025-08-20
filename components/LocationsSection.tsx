@@ -9,7 +9,7 @@ export function LocationsSection() {
   const locations = [
     {
       city: "Mallorca",
-      country: "Spain",
+      country: t('locationsData.mallorca.country'),
       image: "https://images.unsplash.com/photo-1617093888347-f73de2649f94?w=600&h=300&fit=crop",
       members: t('locationsData.mallorca.members'),
       sessions: t('locationsData.mallorca.sessions'),
@@ -20,11 +20,12 @@ export function LocationsSection() {
         { topic: "UI / UX Design", date: "Sep 4", type: "design" }
       ],
       description: t('locationsData.mallorca.description'),
-      highlights: (get<string[]>('locationsData.mallorca.highlights') || [])
+      highlights: (get<string[]>('locationsData.mallorca.highlights') || []),
+      link: "https://meetup.com/mindhub-club"
     },
     {
       city: "Munich",
-      country: "Germany",
+      country: t('locationsData.munich.country'),
       image: "https://images.unsplash.com/photo-1595867818082-083862f3d630?w=600&h=300&fit=crop",
       members: t('locationsData.munich.members'),
       sessions: t('locationsData.munich.sessions'),
@@ -33,7 +34,8 @@ export function LocationsSection() {
         { topic: "AI & Machine Learning", date: "Sep 3", type: "ai" }
       ],
       description: t('locationsData.munich.description'),
-      highlights: (get<string[]>('locationsData.munich.highlights') || [])
+      highlights: (get<string[]>('locationsData.munich.highlights') || []),
+      link: "https://meetup.com/mindhub-club-in-munchen"
     }
   ];
 
@@ -130,7 +132,7 @@ export function LocationsSection() {
                 </div>
 
                 <Button className="w-full mt-auto" variant="outline">
-                  <a href={`mailto:join@mindhub.club?subject=Join%20the%20${location.city}%20Community`}>
+                  <a href={location.link} target="_blank" rel="noopener noreferrer">
                     {t('locations.joinButton').replace('{city}', location.city)}
                   </a>
                 </Button>

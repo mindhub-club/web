@@ -81,8 +81,8 @@ export function HeroSection() {
                 <Users className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-sm">130+ Active Members</p>
-                <p className="text-xs text-muted-foreground">Across specialized clubs</p>
+                <p className="text-sm">{t('hero.overlay.membersCount')}</p>
+                <p className="text-xs text-muted-foreground">{t('hero.overlay.subtitle')}</p>
               </div>
             </div>
           </div>

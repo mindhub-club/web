@@ -1,4 +1,5 @@
 import React from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 
 interface Location {
   id: string;
@@ -2162,6 +2163,8 @@ export function EuropeMap({
   showPotentialLocations = true,
   customStyles = {}
 }: EuropeMapProps) {
+  const { t } = useI18n();
+
   const {
     activeLocationColor = '#388cf3',
     potentialLocationColor = '#bcdaff',
@@ -2364,7 +2367,7 @@ export function EuropeMap({
             className="w-3 h-3 rounded-full"
             style={{ backgroundColor: activeLocationColor }}
           ></div>
-          <span>Active Communities</span>
+          <span>{t('map.active')}</span>
         </div>
         {showPotentialLocations && (
           <div className="flex items-center gap-2">
@@ -2372,7 +2375,7 @@ export function EuropeMap({
               className="w-3 h-3 rounded-full"
               style={{ backgroundColor: potentialLocationColor }}
             ></div>
-            <span>Potential Locations</span>
+            <span>{t('map.planned')}</span>
           </div>
         )}
       </div>

@@ -18,6 +18,7 @@ export default {
     title: "Nuestra red en Europa",
     subtitle: "Actualmente activos en 2 ubicaciones con planes de expansión por Europa",
     active: "Comunidades Activas",
+    planned: "Comunidades Potenciales",
     ctaTitle: "Lleva MindHub a tu ciudad",
     ctaBody: "Ayúdanos a ampliar nuestra red. Buscamos líderes comunitarios apasionados para abrir capítulos de MindHub por Europa.",
     ctaButton: "Abrir un club",
@@ -32,10 +33,12 @@ export default {
     locations: {
       mallorca: {
         sessions: "Eventos semanales",
+        country: "España",
         nextEvent: "AI & Machine Learning"
       },
       munich: {
         sessions: "Eventos semanales",
+        country: "Alemania",
         nextEvent: "Software Engineering"
       }
     }
@@ -48,18 +51,22 @@ export default {
     joinButton: "Unirse a la comunidad de {city}"
   },
   hero: {
-    welcome: "Bienvenido a",
+    welcome: "Esto es",
     brand: "MindHub Club",
-    subtitle: "Únete a clubs profesionales especializados donde expertos aprenden colaborativamente. Desde IA hasta Diseño, cada club tiene su propia identidad y comunidad dedicada.",
-    featured: "Clubs Destacados:",
-    join: "Unirse a un Club",
-    explore: "Explorar Todos los Clubs",
-    stats: "8 Clubs Activos • 2 Ubicaciones"
+    subtitle: "Un espacio donde el conocimiento conecta con la pasión. Únete a tu club especializado donde profesionales como tú se reúnen para aprender de forma colaborativa. Desde Software, Diseño, IA, Marketing y muchos más, cada club tiene su propia identidad y una comunidad dedicada.",
+    featured: "Clubs destacados:",
+    join: "Unirse a un club",
+    explore: "Explorar todos los clubs",
+    stats: "8 Clubs Activos • 2 Ubicaciones",
+    overlay: {
+      membersCount: "130+ Miembros",
+      subtitle: "En clubs especializados"
+    }
   },
   cta: {
     heading: "¿Listo para unirte a un club?",
     subheading: "Conecta con profesionales afines en tu especialidad. Únete a un club existente o ayúdanos a iniciar uno en tu ciudad.",
-    emailPlaceholder: "Introduce tu correo electrónico",
+    emailPlaceholder: "Escribe tu email",
     join: "Unirse",
     existing: "Únete a nuestros clubs en Mallorca y Múnich",
     start: "Abrir una sede",
@@ -86,11 +93,11 @@ export default {
   },
   clubs: {
     ai: {
-      title: "IA y Aprendizaje Automático",
+      title: "AI & Machine Learning",
       description: "Explora lo último en inteligencia artificial, deep learning y aplicaciones prácticas de ML"
     },
     engineering: {
-      title: "Ingeniería de Software",
+      title: "Software Engineering",
       description: "Profundiza en arquitectura de software, buenas prácticas y tecnologías emergentes"
     },
     design: {
@@ -150,12 +157,14 @@ export default {
     mallorca: {
       members: "50+ Miembros",
       sessions: "Sesiones semanales",
+      country: "España",
       description: "Únete a nuestra vibrante comunidad mediterránea donde la innovación tecnológica se une a un estilo de vida relajado. Perfecto para remotos y profesionales locales.",
       highlights: ["Espacios de coworking cerca del mar", "Comunidad internacional", "Eventos todo el año"]
     },
     munich: {
       members: "80+ Miembros",
       sessions: "Sesiones semanales",
+      country: "Alemania",
       description: "Sé parte del próspero ecosistema tecnológico de Múnich, donde los negocios tradicionales se encuentran con la innovación de vanguardia.",
       highlights: ["Acceso a hubs tecnológicos", "Alianzas corporativas", "Networking con la industria"]
     }

@@ -19,16 +19,17 @@ export function CTASection() {
           <div className="space-y-3">
             <div className="flex gap-3">
               <div className="relative flex-1">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 opacity-70" />
-                <Input 
-                  type="email" 
-                  placeholder={t('cta.emailPlaceholder')}
-                  className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/70 focus:bg-white/20"
-                />
-              </div>
-              <Button variant="secondary" size="lg" className="px-6">
-                {t('cta.join')} <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <a 
+                    href="https://meetup.com/mindhub-club/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    >
+              <Button variant="secondary" size="lg" className="w-full text-primary hover:text-white hover:bg-white/10">
+
+{t('cta.join')} <ArrowRight className="w-4 h-4 ml-2" />
+</Button>
+              </a>
+                    </div>
             </div>
             <p className="text-sm opacity-70">
               {t('cta.existing')}
@@ -37,7 +38,7 @@ export function CTASection() {
 
           <div className="space-y-3">
             <a href="mailto:growth@mindhub.club?subject=Suggest%20a%20New%20Club">
-            <Button variant="outline" size="lg" className="w-full border-white/30 text-white hover:bg-white/10">
+            <Button variant="outline" size="lg" className="w-full text-white hover:bg-white/10">
 
               <Plus className="w-4 h-4 mr-2" />
               {t('cta.start')}
@@ -45,7 +46,7 @@ export function CTASection() {
               </a>
             <p className="text-sm opacity-70">
               {t('cta.bring')} {" "}
-              <span className="font-mono bg-white/10 px-1 rounded">growth@mindhub.club</span>
+              <span className="font-mono px-1 rounded">growth@mindhub.club</span>
             </p>
           </div>
         </div>

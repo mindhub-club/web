@@ -32,10 +32,12 @@ export default {
     locations: {
       mallorca: {
         sessions: "Weekly Sessions",
+        country: "Spain",
         nextEvent: "AI & Machine Learning"
       },
       munich: {
         sessions: "Weekly Sessions",
+        country: "Germany",
         nextEvent: "Software Architecture"
       }
     }
@@ -48,13 +50,17 @@ export default {
     joinButton: "Join {city} Community"
   },
   hero: {
-    welcome: "Welcome to",
+    welcome: "This is",
     brand: "MindHub Club",
-    subtitle: "Join specialized professional clubs where experts gather to learn collaboratively. From AI to Design, each club has its own identity and dedicated community.",
+    subtitle: "A space where knowledge meets passion. Join your specialized club where professionals like you gather to learn collaboratively. From Software Engineering, Design, AI, Marketing, Startups, and many more, each club has its own identity and a dedicated community.",
     featured: "Featured Clubs:",
     join: "Join a Club",
     explore: "Explore All Clubs",
-    stats: "8 Active Clubs • 2 Locations"
+    stats: "8 Active Clubs • 2 Locations",
+    overlay: {
+      membersCount: "130+ Active Members",
+      subtitle: "Across specialized clubs"
+    }
   },
   cta: {
     heading: "Ready to Join a Club?",
@@ -150,12 +156,14 @@ export default {
     mallorca: {
       members: "50+ Members",
       sessions: "Weekly Sessions",
+      country: "Spain",
       description: "Join our vibrant Mediterranean community where tech innovation meets relaxed lifestyle. Perfect for remote workers and local professionals.",
       highlights: ["Beachside coworking spaces", "International community", "Year-round events"]
     },
     munich: {
       members: "80+ Members",
       sessions: "Weekly Sessions",
+      country: "Germany",
       description: "Be part of Germany's thriving tech ecosystem in Munich, where traditional business meets cutting-edge innovation.",
       highlights: ["Tech hub access", "Corporate partnerships", "Industry networking"]
     }

@@ -85,7 +85,7 @@ export function EventTypesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {clubs.map((club, index) => (
             <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-6 space-y-4">
+              <CardContent className="p-6 flex flex-col flex-auto gap-6">
                 <div className="flex items-center justify-between">
                   <div className={`w-12 h-12 ${club.bgColor} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                     <club.icon className={`w-6 h-6 ${club.color}`} />
@@ -108,7 +108,7 @@ export function EventTypesSection() {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="w-full group"
+                  className="w-full group mt-auto"
                   asChild
                 >
                   <a 
