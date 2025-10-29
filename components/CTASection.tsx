@@ -19,16 +19,14 @@ export function CTASection() {
           <div className="space-y-3">
             <div className="flex gap-3">
               <div className="relative flex-1">
-              <a 
-                    href="https://meetup.com/mindhub-club/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    >
-              <Button variant="secondary" size="lg" className="w-full text-primary hover:text-white hover:bg-white/10">
+              <Button variant="secondary" size="lg" className="w-full" onClick={() => {
+                document.getElementById('locations')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}>
 
 {t('cta.join')} <ArrowRight className="w-4 h-4 ml-2" />
 </Button>
-              </a>
                     </div>
             </div>
             <p className="text-sm opacity-70">

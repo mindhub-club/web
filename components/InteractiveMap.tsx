@@ -1,13 +1,68 @@
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Calendar, MapPin, Plus, Mail } from "lucide-react";
+import { MapPin, Plus, Mail, Brain, Code, Palette, Rocket, Lightbulb, Megaphone, Scale, Tag } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { EuropeMap } from "./EuropeMap";
 import { useI18n } from "../i18n/I18nProvider";
 
 export function InteractiveMap() {
   const { t } = useI18n();
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+
+  // Map club ids to the same color system used in specialized clubs
+  const clubColorMap: Record<string, string> = {
+    ai: "bg-blue-100 text-blue-700",
+    engineering: "bg-green-100 text-green-700",
+    design: "bg-purple-100 text-purple-700",
+    law: "bg-amber-100 text-amber-700",
+    startup: "bg-red-100 text-red-700",
+    product: "bg-indigo-100 text-indigo-700",
+    innovation: "bg-orange-100 text-orange-700",
+    marketing: "bg-teal-100 text-teal-700",
+  };
+
+  // Support aliases coming from activeLocations configuration
+  const clubAliasMap: Record<string, string> = {
+    software: "engineering",
+    entrepreneurship: "startup",
+  };
+
+  const resolveClubKey = (id: string) => clubAliasMap[id] || id;
+  const getClubColor = (id: string) => clubColorMap[resolveClubKey(id)] || "bg-muted text-foreground";
+
+  // Icon mapping for clubs
+  const clubIconMap: Record<string, (props: { className?: string }) => JSX.Element> = {
+    ai: Brain,
+    engineering: Code,
+    design: Palette,
+    law: Scale,
+    startup: Rocket,
+    product: Lightbulb,
+    innovation: Lightbulb,
+    marketing: Megaphone,
+  };
+
+  const getClubIcon = (id: string) => clubIconMap[resolveClubKey(id)] || Tag;
+
+  // Short, human-friendly tag labels
+  const clubShortNameMap: Record<string, string> = {
+    ai: "AI",
+    engineering: "Engineering",
+    design: "Design",
+    law: "Law",
+    startup: "Entrepreneurs",
+    product: "Product",
+    innovation: "Innovation",
+    marketing: "Marketing",
+  };
+
+  const getClubLabel = (id: string) => {
+    const key = resolveClubKey(id);
+    // Prefer short names for tag chips; fall back to i18n title
+    if (clubShortNameMap[key]) return clubShortNameMap[key];
+    try { return t((`clubs.${key}.title`) as string); } catch { return key; }
+  };
 
   const activeLocations = [
     {
@@ -17,8 +72,7 @@ export function InteractiveMap() {
       countryName: t('map.countries.germany'),
       coordinates: { x: 167.5, y: 162.5 },
       status: "active" as const,
-      sessions: t('map.locations.munich.sessions'),
-      nextEvent: t('map.locations.munich.nextEvent')
+      clubs: ['entrepreneurship'],
     },
     {
       id: "mallorca",
@@ -27,8 +81,7 @@ export function InteractiveMap() {
       countryName: t('map.countries.spain'),
       coordinates: { x: 140, y: 204 },
       status: "active" as const,
-      sessions: t('map.locations.mallorca.sessions'),
-      nextEvent: t('map.locations.mallorca.nextEvent')
+      clubs: ['entrepreneurship', 'software'],
     }
   ];
 
@@ -124,10 +177,28 @@ export function InteractiveMap() {
                           {location.name}, {location.countryName}
                         </h4>
                         
-                        <div className="flex justify-between text-sm text-muted-foreground">
+                        <div className="flex justify-between text-sm text-muted-foreground mt-2">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-3 h-3" />
-                            <span>{location.sessions}</span>
+                            <div className="flex flex-wrap gap-2">
+                              {location.clubs?.map((club) => {
+                                const Icon = getClubIcon(club);
+                                const label = getClubLabel(club);
+                                return (
+                                  <Tooltip key={club}>
+                                    <TooltipTrigger asChild>
+                                      <div
+                                        role="img"
+                                        aria-label={label}
+                                        className={`w-7 h-7 rounded-full flex items-center justify-center ${getClubColor(club)}`}
+                                      >
+                                        <Icon className="w-3.5 h-3.5" />
+                                      </div>
+                                    </TooltipTrigger>
+                                    <TooltipContent sideOffset={6}>{label}</TooltipContent>
+                                  </Tooltip>
+                                );
+                              })}
+                            </div>
                           </div>
                         </div>
                       </div>

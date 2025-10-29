@@ -1,6 +1,7 @@
 import { Clock, Home, FileText, Network } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useI18n } from "../i18n/I18nProvider";
+import CloudinaryImage from "./CloudinaryImage";
 
 export function BenefitsSection() {
   const { t } = useI18n();
@@ -53,10 +54,10 @@ export function BenefitsSection() {
               ))}
             </div>
           </div>
-          
           <div className="relative order-first lg:order-none">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=500&fit=crop"
+            <CloudinaryImage
+              src="https://res.cloudinary.com/mipigu/image/upload/v1761751724/mindhub/spaces.png"
+              height={1600}
               alt="Modern collaborative workspace"
               className="rounded-lg shadow-xl w-full h-auto"
             />

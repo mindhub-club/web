@@ -60,4 +60,10 @@
   }
 }
 
+@layer utilities {
+  /* Brand utilities */
+  .bg-brand-gradient {
+    @apply bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-600;
+  }
+}
 

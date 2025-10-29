@@ -16,8 +16,8 @@ export default {
     }
   },
   map: {
-    title: "Unser Netzwerk in Europa",
-    subtitle: "Derzeit aktiv an 2 Standorten mit Plänen zur Expansion in ganz Europa",
+    title: "Unser globales Netzwerk",
+    subtitle: "Derzeit aktiv an 2 Standorten mit Plänen zur Expansion in ganz Europa, und darüber hinaus.",
     active: "Aktive Communities",
     planned: "Potenzielle Communities",
     ctaTitle: "Bringe MindHub in deine Stadt",
@@ -48,10 +48,15 @@ export default {
   },
   locations: {
     title: "Community im Fokus",
+    members: "{count}+ Mitglieder",
+    frequency: "Wöchentliche Events",
     subtitle: "Lerne unsere aktiven Communities kennen und entdecke, was jeden Standort besonders macht",
     upcoming: "Bevorstehende Events",
     highlights: "Community-Highlights",
-    joinButton: "Community {city} beitreten"
+    joinButton: "Community {city} beitreten",
+    topics: {
+      startup: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr."
+    }
   },
   hero: {
     welcome: "Das ist",
@@ -60,7 +65,7 @@ export default {
     featured: "Ausgewählte Clubs:",
     join: "Einem Club beitreten",
     explore: "Alle Clubs entdecken",
-    stats: "8 aktive Clubs • 2 Standorte",
+    stats: "3 aktive Clubs • 2 Standorte",
     overlay: {
       membersCount: "130+ Aktive Mitglieder",
       subtitle: "In spezialisierten Clubs"
@@ -90,7 +95,6 @@ export default {
   events: {
     title: "Spezialisierte Clubs",
     blurb: "Tritt fokussierten Communities rund um deine beruflichen Interessen bei. Jeder Club hat eine eigene Identität und einen Raum für tiefgehende Diskussionen.",
-    joinClub: "Club beitreten",
     suggest: "Neuen Club vorschlagen",
     notFound: "Dein Schwerpunkt fehlt? Wir erweitern unser Angebot kontinuierlich."
   },
@@ -100,11 +104,11 @@ export default {
       description: "Entdecke das Neueste in KI, Deep Learning und praktischen ML-Anwendungen"
     },
     engineering: {
-      title: "Software Engineering",
+      title: "Software Engineers",
       description: "Tauche tief ein in Softwarearchitektur, Best Practices und neue Technologien"
     },
     design: {
-      title: "Design & UX",
+      title: "Designers & UX",
       description: "Diskutiere UX-Design, Produktdesign-Prinzipien und Design Thinking"
     },
     law: {
@@ -112,11 +116,11 @@ export default {
       description: "Navigiere Rechtsrahmen, Compliance, IP und Innovationen im LegalTech"
     },
     startup: {
-      title: "Startups & Unternehmertum",
+      title: "Gründer:innen & Unternehmer:innen",
       description: "Teile Insights zu Gründung, Fundraising, Skalierung und Strategien"
     },
     product: {
-      title: "Product Management",
+      title: "Product Managers",
       description: "Lerne über Produktstrategie, User Research, Agile Methoden und Product-Market-Fit"
     },
     innovation: {
@@ -160,12 +164,14 @@ export default {
   locationsData: {
     mallorca: {
       members: "50+ Mitglieder",
+      country: "Spanien",
       sessions: "Wöchentliche Events",
       description: "Werde Teil unserer lebendigen mediterranen Community – wo Tech-Innovation auf entspannten Lifestyle trifft. Ideal für Remote-Worker und lokale Profis.",
       highlights: ["Coworking am Strand", "Internationale Community", "Events rund ums Jahr"]
     },
     munich: {
       members: "80+ Mitglieder",
+      country: "Deutschland",
       sessions: "Wöchentliche Events",
       description: "Sei Teil von Münchens florierendem Tech-Ökosystem, wo Tradition auf Innovation trifft.",
       highlights: ["Zugang zu Tech-Hubs", "Unternehmenspartnerschaften", "Branchen-Netzwerk"]

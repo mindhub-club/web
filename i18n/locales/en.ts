@@ -15,11 +15,12 @@ export default {
     }
   },
   map: {
-    title: "Our European Network",
-    subtitle: "Currently active in 2 locations with plans to expand across Europe. Help us bring MindHub to your city.",
+    title: "Our Global Network",
+    subtitle: "Currently active in 2 locations with plans to expand across Europe, and beyond.",
     active: "Active Communities",
+    planned: "Growing Communities",
     ctaTitle: "Bring MindHub to Your City",
-    ctaBody: "Help us expand our network. We're looking for passionate community leaders to establish MindHub chapters across Europe.",
+    ctaBody: "Help us expand our network. We're looking for passionate community leaders to establish MindHub chapters across the globe.",
     ctaButton: "Start a Chapter",
     emailLead: "Email us at",
     cities: {
@@ -35,12 +36,10 @@ export default {
     },
     locations: {
       mallorca: {
-        sessions: "Weekly Sessions",
         country: "Spain",
         nextEvent: "AI & Machine Learning"
       },
       munich: {
-        sessions: "Weekly Sessions",
         country: "Germany",
         nextEvent: "Software Architecture"
       }
@@ -48,10 +47,15 @@ export default {
   },
   locations: {
     title: "Community Spotlight",
+    members: "{count}+ Members",
+    frequency: "Weekly gatherings",
     subtitle: "Get to know our active communities and discover what makes each location unique",
     upcoming: "Upcoming Events",
     highlights: "Community Highlights",
-    joinButton: "Join {city} Community"
+    joinButton: "Join {city} Community",
+    topics: {
+      startup: "Entrepreneurs, Founders, Business Owners, Visionaries, and more."
+    }
   },
   hero: {
     welcome: "This is",
@@ -60,7 +64,7 @@ export default {
     featured: "Featured Clubs:",
     join: "Join a Club",
     explore: "Explore All Clubs",
-    stats: "8 Active Clubs • 2 Locations",
+    stats: "3 Active Clubs • 2 Locations",
     overlay: {
       membersCount: "130+ Active Members",
       subtitle: "Across specialized clubs"
@@ -90,7 +94,6 @@ export default {
   events: {
     title: "Specialized Clubs",
     blurb: "Join focused communities organized around your professional interests. Each club has its own identity and dedicated space for deep, specialized discussions.",
-    joinClub: "Join Club",
     suggest: "Suggest a New Club",
     notFound: "Can't find your specialty? We're always expanding our club offerings."
   },
@@ -100,11 +103,11 @@ export default {
       description: "Explore the latest in artificial intelligence, deep learning, and practical ML applications"
     },
     engineering: {
-      title: "Software Engineering",
+      title: "Software Engineers",
       description: "Dive deep into software architecture, best practices, and emerging technologies"
     },
     design: {
-      title: "Design & UX",
+      title: "Designers & UX",
       description: "Discuss user experience design, product design principles, and design thinking methodologies"
     },
     law: {
@@ -112,11 +115,11 @@ export default {
       description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations"
     },
     startup: {
-      title: "Startup & Entrepreneurship",
+      title: "Founders & Entrepreneurs",
       description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies"
     },
     product: {
-      title: "Product Management",
+      title: "Product Managers",
       description: "Learn about product strategy, user research, agile methodologies, and product-market fit"
     },
     innovation: {

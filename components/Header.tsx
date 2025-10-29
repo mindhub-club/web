@@ -34,15 +34,13 @@ export function Header() {
           </nav>
           
           <div className="flex items-center gap-3">
-            <a 
-              href="https://meetup.com/mindhub-club/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <Button>
+              <Button onClick={() => {
+                document.getElementById('locations')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}>
                 {t('header.joinClub')}
               </Button>
-            </a>
             <LanguageSwitcher />
           </div>
         </div>

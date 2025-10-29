@@ -96,7 +96,6 @@ export function EventTypesSection() {
                   <h3 className="text-lg">{t(club.titleKey as string)}</h3>
                   
                   <div className="flex items-center gap-2 p-2 bg-muted/50 rounded-lg">
-                    <Mail className="w-4 h-4 text-muted-foreground" />
                     <span className="text-sm font-mono text-muted-foreground">{club.email}</span>
                   </div>
                   
@@ -104,22 +103,6 @@ export function EventTypesSection() {
                     {t(club.descriptionKey as string)}
                   </p>
                 </div>
-
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="w-full group mt-auto"
-                  asChild
-                >
-                  <a 
-                    href="https://meetup.com/mindhub-club/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    {t('events.joinClub')}
-                    <ExternalLink className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
               </CardContent>
             </Card>
           ))}

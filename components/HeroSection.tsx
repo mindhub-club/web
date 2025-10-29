@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Brain, Code, Palette, Rocket, Users } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
+import CloudinaryImage from "./CloudinaryImage";
 
 export function HeroSection() {
   const { t } = useI18n();
@@ -38,15 +39,13 @@ export function HeroSection() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-                    href="https://meetup.com/mindhub-club/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-            <Button size="lg" className="text-lg px-8 py-6 w-full sm:w-auto">
+            <Button variant="brand" size="lg" className="text-lg px-8 py-6 w-full sm:w-auto" onClick={() => {
+              document.getElementById('locations')?.scrollIntoView({ 
+                behavior: 'smooth' 
+              });
+            }}>
               {t('hero.join')}
             </Button>
-              </a>
             <Button 
               variant="outline" 
               size="lg" 
@@ -70,11 +69,13 @@ export function HeroSection() {
         </div>
         
         <div className="relative">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+          <CloudinaryImage
+            src="https://res.cloudinary.com/mipigu/image/upload/v1761751724/mindhub/mallorca.jpg"
+            height={1100}
             alt="Diverse professionals collaborating in specialized groups"
             className="rounded-lg shadow-2xl w-full h-auto"
           />
+          
           <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg border">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">

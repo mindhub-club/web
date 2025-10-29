@@ -15,8 +15,8 @@ export default {
     }
   },
   map: {
-    title: "Nuestra red en Europa",
-    subtitle: "Actualmente activos en 2 ubicaciones con planes de expansión por Europa",
+    title: "Nuestra red global",
+    subtitle: "Actualmente activos en 2 ubicaciones con planes de expansión por Europa, y más allá.",
     active: "Comunidades Activas",
     planned: "Comunidades Potenciales",
     ctaTitle: "Lleva MindHub a tu ciudad",
@@ -50,18 +50,23 @@ export default {
   locations: {
     title: "Comunidades Destacadas",
     subtitle: "Conoce nuestras comunidades activas y descubre qué hace única a cada ubicación",
+    members: "{count}+ Miembros",
+    frequency: "Reuniones semanales",
     upcoming: "Próximos eventos",
     highlights: "Aspectos destacados de la comunidad",
-    joinButton: "Unirse a la comunidad de {city}"
+    joinButton: "Unirse a la comunidad de {city}",
+    topics: {
+      startup: "Emprendedores, Fundadores, Empresarios, Visionarios, y más."
+    }
   },
   hero: {
-    welcome: "Esto es",
+    welcome: "Somos",
     brand: "MindHub Club",
     subtitle: "Un espacio donde el conocimiento conecta con la pasión. Únete a tu club especializado donde profesionales como tú se reúnen para aprender de forma colaborativa. Desde Software, Diseño, IA, Marketing y muchos más, cada club tiene su propia identidad y una comunidad dedicada.",
     featured: "Clubs destacados:",
     join: "Unirse a un club",
     explore: "Explorar todos los clubs",
-    stats: "8 Clubs Activos • 2 Ubicaciones",
+    stats: "3 Clubs Activos • 2 Ubicaciones",
     overlay: {
       membersCount: "130+ Miembros",
       subtitle: "En clubs especializados"
@@ -91,7 +96,6 @@ export default {
   events: {
     title: "Clubs Especializados",
     blurb: "Únete a comunidades enfocadas en tus intereses profesionales. Cada club tiene identidad propia y un espacio dedicado para conversaciones profundas.",
-    joinClub: "Unirse al Club",
     suggest: "Sugerir un nuevo club",
     notFound: "¿No encuentras tu especialidad? Siempre estamos ampliando nuestra oferta de clubs."
   },
@@ -101,23 +105,23 @@ export default {
       description: "Explora lo último en inteligencia artificial, deep learning y aplicaciones prácticas de ML"
     },
     engineering: {
-      title: "Software Engineering",
+      title: "Ingenieros de Software",
       description: "Profundiza en arquitectura de software, buenas prácticas y tecnologías emergentes"
     },
     design: {
-      title: "Diseño y UX",
+      title: "Diseñadores y UX",
       description: "Debate sobre experiencia de usuario, principios de diseño de producto y design thinking"
     },
     law: {
-      title: "Derecho y LegalTech",
+      title: "Derecho y Legal Tech",
       description: "Navega marcos legales, cumplimiento, propiedad intelectual e innovaciones en tecnología legal"
     },
     startup: {
-      title: "Startups y Emprendimiento",
+      title: "Fundadores y Emprendedores",
       description: "Comparte ideas sobre cómo crear startups, fundraising, escalado y estrategias emprendedoras"
     },
     product: {
-      title: "Product Management",
+      title: "Product Managers",
       description: "Aprende sobre estrategia de producto, investigación de usuarios, metodologías ágiles y product-market fit"
     },
     innovation: {
@@ -160,15 +164,11 @@ export default {
   },
   locationsData: {
     mallorca: {
-      members: "50+ Miembros",
-      sessions: "Sesiones semanales",
       country: "España",
       description: "Únete a nuestra vibrante comunidad mediterránea donde la innovación tecnológica se une a un estilo de vida relajado. Perfecto para remotos y profesionales locales.",
       highlights: ["Espacios de coworking cerca del mar", "Comunidad internacional", "Eventos todo el año"]
     },
     munich: {
-      members: "80+ Miembros",
-      sessions: "Sesiones semanales",
       country: "Alemania",
       description: "Sé parte del próspero ecosistema tecnológico de Múnich, donde los negocios tradicionales se encuentran con la innovación de vanguardia.",
       highlights: ["Acceso a hubs tecnológicos", "Alianzas corporativas", "Networking con la industria"]
