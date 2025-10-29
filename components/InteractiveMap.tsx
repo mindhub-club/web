@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { MapPin, Plus, Mail, Brain, Code, Palette, Rocket, Lightbulb, Megaphone, Scale, Tag } from "lucide-react";
+import { MapPin, Plus, Mail, Brain, Code, Palette, Rocket, Lightbulb, Megaphone, Scale, Tag, LucideIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { EuropeMap } from "./EuropeMap";
 import { useI18n } from "../i18n/I18nProvider";
@@ -32,7 +32,7 @@ export function InteractiveMap() {
   const getClubColor = (id: string) => clubColorMap[resolveClubKey(id)] || "bg-muted text-foreground";
 
   // Icon mapping for clubs
-  const clubIconMap: Record<string, (props: { className?: string }) => JSX.Element> = {
+  const clubIconMap: Record<string, LucideIcon> = {
     ai: Brain,
     engineering: Code,
     design: Palette,
