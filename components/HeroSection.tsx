@@ -68,7 +68,7 @@ export function HeroSection() {
           </div>
         </div>
         
-        <div className="relative">
+        <div className="relative order-first lg:order-none">
           <CloudinaryImage
             src="https://res.cloudinary.com/mipigu/image/upload/v1761751724/mindhub/mallorca.jpg"
             height={1100}
