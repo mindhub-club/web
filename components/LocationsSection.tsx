@@ -136,10 +136,6 @@ export function LocationsSection() {
                     />
                   );
                 })()}
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  <span className="text-sm">{location.city}, {location.country}</span>
-                </div>
               </div>
               
               <CardContent className="p-6 gap-y-6 flex flex-col flex-auto">
