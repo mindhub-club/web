@@ -53,11 +53,50 @@ export default {
     members: "{count}+ Miembros",
     frequency: "Reuniones semanales",
     upcoming: "Próximos eventos",
+    clickToRsvp: "Haz clic en un evento para ver detalles y confirmar asistencia.",
+    clickToRsvpOrPreregister: "Haz clic para inscribirte o preinscribirte en eventos programados.",
+    preregisterHint: "Preinscríbete en eventos programados para recibir aviso cuando se abran las inscripciones.",
+    noOpenRsvp: "Sin inscripciones abiertas por ahora. Vuelve pronto.",
+    tbd: "Por confirmar",
     highlights: "Aspectos destacados de la comunidad",
+    languages: "Idiomas",
     joinButton: "Unirse a la comunidad de {city}",
+    rsvp: "Inscríbete!",
+    preregister: "Programado",
+    price: {
+      free: "Gratis"
+    },
+    form: {
+      namePlaceholder: "Tu nombre",
+      nameRequired: "Por favor, escribe tu nombre.",
+      email: "Email",
+      whatsapp: "WhatsApp",
+      emailPlaceholder: "nombre@correo.com",
+      whatsappPlaceholder: "612 345 678",
+      contactRequired: "Introduce un medio de contacto.",
+      invalidEmail: "Introduce un email válido.",
+      invalidWhatsapp: "Introduce un número de WhatsApp válido.",
+      submit: "Avísadme!",
+      submitting: "Enviando...",
+      success: "¡Gracias! Te avisaremos cuando se abran las inscripciones.",
+      error: "Algo salió mal. Inténtalo de nuevo.",
+      close: "Cerrar",
+      searchCountry: "Buscar país",
+      noResults: "Sin resultados"
+    },
+    status: {
+      open: "Inscripción abierta",
+      planned: "Programado"
+    },
     topics: {
       startup: "Emprendedores, Fundadores, Empresarios, Visionarios, y más."
     }
+  },
+  languageNames: {
+    english: "Inglés",
+    spanish: "Español",
+    catalan: "Catalán",
+    german: "Alemán"
   },
   hero: {
     welcome: "Somos",
@@ -165,7 +204,7 @@ export default {
   locationsData: {
     mallorca: {
       country: "España",
-      description: "Únete a nuestra vibrante comunidad mediterránea donde la innovación tecnológica se une a un estilo de vida relajado. Perfecto para remotos y profesionales locales.",
+      description: "Únete a nuestra vibrante comunidad mediterránea donde la innovación tecnológica se une a un estilo de vida relajado. Perfecto para nómadas digitales y profesionales locales.",
       highlights: ["Espacios de coworking cerca del mar", "Comunidad internacional", "Eventos todo el año"]
     },
     munich: {

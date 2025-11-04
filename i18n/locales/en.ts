@@ -51,11 +51,51 @@ export default {
     frequency: "Weekly gatherings",
     subtitle: "Get to know our active communities and discover what makes each location unique",
     upcoming: "Upcoming Events",
+    clickToRsvp: "Tap an event to view details and RSVP.",
+    clickToRsvpOrPreregister: "Tap to RSVP or pre-register for scheduled events.",
+    preregisterHint: "Pre-register for scheduled events to get notified when RSVP opens.",
+    noOpenRsvp: "No open RSVPs yet — check back soon.",
+    tbd: "TBD",
     highlights: "Community Highlights",
+    languages: "Languages",
     joinButton: "Join {city} Community",
+    rsvp: "Join us!",
+    preregister: "Scheduled",
+    price: {
+      free: "Free"
+    },
+    form: {
+      namePlaceholder: "Your name",
+      nameRequired: "Please enter your name.",
+      email: "Email",
+      whatsapp: "WhatsApp",
+      emailPlaceholder: "you@example.com",
+      whatsappPlaceholder: "612 345 678",
+      contactRequired: "Please enter a contact.",
+      invalidEmail: "Enter a valid email address.",
+      invalidWhatsapp: "Enter a valid WhatsApp number.",
+      submit: "Notify me!",
+      submitting: "Sending...",
+      success: "Thanks! We’ll notify you when RSVP opens.",
+      error: "Something went wrong. Please try again.",
+      close: "Close",
+      searchCountry: "Search country",
+      noResults: "No results"
+    },
+    
+    status: {
+      open: "RSVP open",
+      planned: "Scheduled"
+    },
     topics: {
       startup: "Entrepreneurs, Founders, Business Owners, Visionaries, and more."
     }
+  },
+  languageNames: {
+    english: "English",
+    spanish: "Spanish",
+    catalan: "Catalan",
+    german: "German"
   },
   hero: {
     welcome: "This is",

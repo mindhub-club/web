@@ -52,11 +52,50 @@ export default {
     frequency: "Wöchentliche Events",
     subtitle: "Lerne unsere aktiven Communities kennen und entdecke, was jeden Standort besonders macht",
     upcoming: "Bevorstehende Events",
+    clickToRsvp: "Klicke auf ein Event, um Details zu sehen und zuzusagen.",
+    clickToRsvpOrPreregister: "Klicke zum Anmelden oder Voranmelden bei geplanten Events.",
+    preregisterHint: "Voranmelden für geplante Events, um informiert zu werden, wenn die Anmeldung öffnet.",
+    noOpenRsvp: "Keine offenen Anmeldungen – bald wieder vorbeischauen.",
+    tbd: "Wird bekanntgegeben",
     highlights: "Community-Highlights",
+    languages: "Sprachen",
     joinButton: "Community {city} beitreten",
+    rsvp: "Mach mit!",
+    preregister: "Geplant",
+    price: {
+      free: "Kostenlos"
+    },
+    form: {
+      namePlaceholder: "Dein Name",
+      nameRequired: "Bitte gib deinen Namen ein.",
+      email: "E-Mail",
+      whatsapp: "WhatsApp",
+      emailPlaceholder: "du@beispiel.de",
+      whatsappPlaceholder: "151 2345678",
+      contactRequired: "Bitte gib eine Kontaktmöglichkeit an.",
+      invalidEmail: "Bitte eine gültige E-Mail angeben.",
+      invalidWhatsapp: "Bitte eine gültige WhatsApp-Nummer.",
+      submit: "Benachrichtigen",
+      submitting: "Sende...",
+      success: "Danke! Wir informieren dich, wenn die Anmeldung öffnet.",
+      error: "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      close: "Schließen",
+      searchCountry: "Land suchen",
+      noResults: "Keine Treffer"
+    },
+    status: {
+      open: "Anmeldung offen",
+      planned: "Geplant"
+    },
     topics: {
       startup: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr."
     }
+  },
+  languageNames: {
+    english: "Englisch",
+    spanish: "Spanisch",
+    catalan: "Katalanisch",
+    german: "Deutsch"
   },
   hero: {
     welcome: "Das ist",
