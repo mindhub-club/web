@@ -10,9 +10,10 @@ export default {
     },
     joinClub: "Einem Club beitreten",
     lang: {
-      en: "EN",
-      es: "ES",
-      de: "DE"
+      en: "English",
+      es: "Español",
+      ca: "Català",
+      de: "Deutshche"
     }
   },
   map: {

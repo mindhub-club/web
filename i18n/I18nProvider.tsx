@@ -2,8 +2,9 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import en from './locales/en';
 import es from './locales/es';
 import de from './locales/de';
+import ca from './locales/ca';
 
-type LocaleKey = 'en' | 'es' | 'de';
+type LocaleKey = 'en' | 'es' | 'de' | 'ca';
 
 // Use a flexible message shape to support multiple locales with different string literals
 type Messages = Record<string, unknown>;
@@ -22,18 +23,20 @@ const allMessages: Record<LocaleKey, Messages> = {
   en: en as unknown as Messages,
   es: es as unknown as Messages,
   de: de as unknown as Messages,
+  ca: ca as unknown as Messages,
 };
 
 function detectLocaleFromPathname(pathname: string): LocaleKey {
   if (pathname === '/es' || pathname.startsWith('/es/')) return 'es';
   if (pathname === '/de' || pathname.startsWith('/de/')) return 'de';
+  if (pathname === '/ca' || pathname.startsWith('/ca/')) return 'ca';
   return 'en';
 }
 
 function buildPathForLocale(pathname: string, locale: LocaleKey): string {
   // Remove existing locale prefix if present
   let withoutLocale = pathname || '/';
-  const prefixes = ['/es', '/de'];
+  const prefixes = ['/es', '/de', '/ca'];
   for (const p of prefixes) {
     if (withoutLocale === p) {
       withoutLocale = '/';

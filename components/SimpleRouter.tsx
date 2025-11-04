@@ -15,8 +15,9 @@ export function SimpleRouter({ children }: RouterProps) {
     const path = window.location.pathname;
     const isEs = path === '/es' || path.startsWith('/es/');
     const isDe = path === '/de' || path.startsWith('/de/');
-    setLocalePrefix(isEs ? '/es' : isDe ? '/de' : '');
-    const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : path;
+    const isCa = path === '/ca' || path.startsWith('/ca/');
+    setLocalePrefix(isEs ? '/es' : isDe ? '/de' : isCa ? '/ca' : '');
+    const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : isCa ? path.slice(3) || '/' : path;
     if (localPath === '/privacy') {
       setCurrentPage('privacy');
     } else if (localPath === '/terms') {
@@ -47,8 +48,9 @@ export function SimpleRouter({ children }: RouterProps) {
       const path = window.location.pathname;
       const isEs = path === '/es' || path.startsWith('/es/');
       const isDe = path === '/de' || path.startsWith('/de/');
-      setLocalePrefix(isEs ? '/es' : isDe ? '/de' : '');
-      const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : path;
+      const isCa = path === '/ca' || path.startsWith('/ca/');
+      setLocalePrefix(isEs ? '/es' : isDe ? '/de' : isCa ? '/ca' : '');
+      const localPath = isEs ? path.slice(3) || '/' : isDe ? path.slice(3) || '/' : isCa ? path.slice(3) || '/' : path;
       if (localPath === '/privacy') {
         setCurrentPage('privacy');
       } else if (localPath === '/terms') {
@@ -83,7 +85,9 @@ export function SimpleRouter({ children }: RouterProps) {
 export const navigate = (path: string) => {
   const current = window.location.pathname;
   const isEs = current === '/es' || current.startsWith('/es/');
-  const prefix = isEs ? '/es' : '';
+  const isDe = current === '/de' || current.startsWith('/de/');
+  const isCa = current === '/ca' || current.startsWith('/ca/');
+  const prefix = isEs ? '/es' : isDe ? '/de' : isCa ? '/ca' : '';
   const full = `${prefix}${path === '/' ? '' : path}` || '/';
   window.history.pushState({}, '', full);
   window.dispatchEvent(new PopStateEvent('popstate'));
