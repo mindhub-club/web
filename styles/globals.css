@@ -23,6 +23,9 @@
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
   --ring: 222.2 84% 4.9%;
+  /* Brand color (update to your actual brand hue) */
+  --brand: 262 83% 58%;          /* approx. violet-600 */
+  --brand-foreground: 210 40% 98%;
   --radius: 0.5rem;
 }
 
@@ -46,6 +49,9 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 212.7 26.8% 83.9%;
+  /* Keep brand readable in dark mode */
+  --brand: 262 83% 58%;
+  --brand-foreground: 210 40% 98%;
 }
 
 
@@ -66,4 +72,3 @@
     @apply bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-600;
   }
 }
-
