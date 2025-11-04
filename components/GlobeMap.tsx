@@ -62,7 +62,7 @@ export function GlobeMap({
   // High-quality day/night textures (CORS-friendly). You can override via Vite env.
   const DAY_TEX = (import.meta as any).env?.VITE_GLOBE_DAY_URL || 'https://cdn.jsdelivr.net/gh/vasturiano/three-globe@v2.44.1/example/img/earth-blue-marble.jpg';
   const NIGHT_TEX = (import.meta as any).env?.VITE_GLOBE_NIGHT_URL || 'https://res.cloudinary.com/mipigu/image/upload/v1761757886/mindhub/8k_earth_nightmap_twkxoc.jpg';
-  const [texUrl, setTexUrl] = useState<string>(DAY_TEX);
+  const [texUrl, setTexUrl] = useState<string>(NIGHT_TEX);
 
   // Parse HEX with optional alpha (#RRGGBB or #RRGGBBAA) to hex + opacity
   const parseHexWithAlpha = (hex?: string): { hex?: string; opacity?: number } => {
