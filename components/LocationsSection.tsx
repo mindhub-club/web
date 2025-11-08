@@ -40,7 +40,7 @@ export function LocationsSection() {
       name: t('map.cities.mallorca'),
       country: t('locationsData.mallorca.country'),
       image: "https://res.cloudinary.com/mipigu/image/upload/v1762620859/mindhub/IMG_5002_swghcd.jpg",
-      members: 10,
+      members: 20,
       sessions: t('locationsData.mallorca.sessions'),
       languages: [t('languageNames.catalan'), t('languageNames.spanish'), t('languageNames.english')],
       nextEvents: [
