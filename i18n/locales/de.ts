@@ -1,4 +1,7 @@
 export default {
+  topicsShort: {
+    startup: "Unternehmer:innen",
+  },
   header: {
     brand: "MindHub Club",
     handle: "@mindhub_club",
@@ -90,7 +93,7 @@ export default {
       planned: "Geplant"
     },
     topics: {
-      startup: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr."
+      entrepreneurs: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr."
     }
   },
   languageNames: {
@@ -156,7 +159,7 @@ export default {
       title: "Recht & LegalTech",
       description: "Navigiere Rechtsrahmen, Compliance, IP und Innovationen im LegalTech"
     },
-    startup: {
+    entrepreneurs: {
       title: "Gründer:innen & Unternehmer:innen",
       description: "Teile Insights zu Gründung, Fundraising, Skalierung und Strategien"
     },

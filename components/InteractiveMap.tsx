@@ -18,7 +18,7 @@ export function InteractiveMap() {
     engineering: "bg-green-100 text-green-700",
     design: "bg-purple-100 text-purple-700",
     law: "bg-amber-100 text-amber-700",
-    startup: "bg-red-100 text-red-700",
+    entrepreneurs: "bg-red-100 text-red-700",
     product: "bg-indigo-100 text-indigo-700",
     innovation: "bg-orange-100 text-orange-700",
     marketing: "bg-teal-100 text-teal-700",
@@ -27,7 +27,7 @@ export function InteractiveMap() {
   // Support aliases coming from activeLocations configuration
   const clubAliasMap: Record<string, string> = {
     software: "engineering",
-    entrepreneurship: "startup",
+    entrepreneurship: "entrepreneurs",
   };
 
   const resolveClubKey = (id: string) => clubAliasMap[id] || id;
@@ -39,7 +39,7 @@ export function InteractiveMap() {
     engineering: Code,
     design: Palette,
     law: Scale,
-    startup: Rocket,
+    entrepreneurs: Rocket,
     product: Lightbulb,
     innovation: Lightbulb,
     marketing: Megaphone,
@@ -53,7 +53,7 @@ export function InteractiveMap() {
     engineering: "Engineering",
     design: "Design",
     law: "Law",
-    startup: "Entrepreneurs",
+    entrepreneurs: "Entrepreneurs",
     product: "Product",
     innovation: "Innovation",
     marketing: "Marketing",

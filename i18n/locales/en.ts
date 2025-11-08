@@ -1,4 +1,7 @@
 export default {
+  topicsShort: {
+    startup: "Entrepreneurs",
+  },
   header: {
     brand: "MindHub Club",
     handle: "@mindhub_club",
@@ -91,7 +94,7 @@ export default {
       planned: "Scheduled"
     },
     topics: {
-      startup: "Entrepreneurs, Founders, Business Owners, Visionaries, and more."
+      entrepreneurs: "Entrepreneurs, Founders, Business Owners, Visionaries, and more."
     }
   },
   languageNames: {
@@ -103,7 +106,7 @@ export default {
   hero: {
     welcome: "This is",
     brand: "MindHub Club",
-    subtitle: "A space where knowledge meets passion. Join your specialized club where professionals like you gather to learn collaboratively. From Software Engineering, Design, AI, Marketing, Startups, and many more, each club has its own identity and a dedicated community.",
+    subtitle: "A space where knowledge meets passion. Join your specialized club where professionals like you gather to learn collaboratively. From Software Engineering, Design, AI, Marketing, Entrepreneurs, and many more, each club has its own identity and a dedicated community.",
     featured: "Featured Clubs:",
     join: "Join a Club",
     explore: "Explore All Clubs",
@@ -157,7 +160,7 @@ export default {
       title: "Law & Legal Tech",
       description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations"
     },
-    startup: {
+    entrepreneurs: {
       title: "Founders & Entrepreneurs",
       description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies"
     },

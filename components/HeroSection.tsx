@@ -1,16 +1,17 @@
 import { Button } from "./ui/button";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Brain, Code, Palette, Rocket, Users } from "lucide-react";
 import { useI18n } from "../i18n/I18nProvider";
-import CloudinaryImage from "./CloudinaryImage";
+import HeroSlideshow, { HeroSlide } from "./HeroSlideshow";
+import { useState } from "react";
 
 export function HeroSection() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const [heroIndex, setHeroIndex] = useState(0);
   const featuredClubs = [
     { icon: Brain, email: "ai@mindhub.club", color: "text-blue-600" },
     { icon: Code, email: "engineering@mindhub.club", color: "text-green-600" },
     { icon: Palette, email: "design@mindhub.club", color: "text-purple-600" },
-    { icon: Rocket, email: "startup@mindhub.club", color: "text-red-600" }
+    { icon: Rocket, email: "entrepreneurs@mindhub.club", color: "text-red-600" }
   ];
 
   return (
@@ -69,14 +70,64 @@ export function HeroSection() {
         </div>
         
         <div className="relative order-first lg:order-none">
-          <CloudinaryImage
-            src="https://res.cloudinary.com/mipigu/image/upload/v1761751724/mindhub/mallorca.jpg"
-            height={1100}
-            alt="Diverse professionals collaborating in specialized groups"
-            className="rounded-lg shadow-2xl w-full h-auto"
-          />
+          {(() => {
+            const formatShortDate = (raw: string) => {
+              try {
+                const d = new Date(raw);
+                const opts: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+                return new Intl.DateTimeFormat(locale, opts).format(d);
+              } catch {
+                return raw;
+              }
+            };
+
+            const slides: HeroSlide[] = [
+              {
+                url: "https://res.cloudinary.com/mipigu/image/upload/v1762620859/mindhub/IMG_5002_swghcd.jpg",
+                alt: "MindHub @ Mallorca x Entrepreneurs",
+                dateLabel: formatShortDate("2025-11-7"),
+                eventLabel: t('topicsShort.startup'),
+                crop: 'fit',
+              },
+              {
+                url: "https://res.cloudinary.com/mipigu/image/upload/v1762621223/mindhub/IMG_4602_sxkkoe.jpg",
+                alt: "MindHub @ Mallorca x Entrepreneurs",
+                dateLabel: formatShortDate("2025-10-31"),
+                eventLabel: t('topicsShort.startup'),
+                crop: 'fit',
+              },
+            ];
+            const current = slides[heroIndex] || slides[0];
+            return (
+              <>
+                <HeroSlideshow
+                  slides={slides}
+                  interval={6000}
+                  className="rounded-lg shadow-2xl w-full lg:min-h-[520px]"
+                  captionSide="right"
+                  showCaptionInside={false}
+                  onSlideChange={setHeroIndex}
+                />
+                {(current?.dateLabel || current?.eventLabel) && (
+                  <div className="absolute -bottom-7 right-0 z-20">
+                    <div className="flex items-center gap-2">
+                      {current?.eventLabel && (
+                        <span className="text-sm font-medium text-foreground">{current.eventLabel}</span>
+                      )}
+                      {current?.dateLabel && current?.eventLabel && (
+                        <span className="text-muted-foreground">•</span>
+                      )}
+                      {current?.dateLabel && (
+                        <span className="text-sm text-muted-foreground">{current.dateLabel}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </>
+            );
+          })()}
           
-          <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg border">
+          <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg border hidden sm:block">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                 <Users className="w-5 h-5 text-primary" />

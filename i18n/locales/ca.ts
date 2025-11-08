@@ -1,4 +1,7 @@
 export default {
+  topicsShort: {
+    startup: "Emprenedors",
+  },
   header: {
     brand: "MindHub Club",
     handle: "@mindhub_club",
@@ -92,7 +95,7 @@ export default {
       planned: "Programat"
     },
     topics: {
-      startup: "Emprenedors, Fundadors, Empresaris, Visionaris i més."
+      entrepreneurs: "Emprenedors, Fundadors, Empresaris, Visionaris i més."
     }
   },
   languageNames: {
@@ -158,7 +161,7 @@ export default {
       title: "Dret i Legal Tech",
       description: "Navega marcs legals, compliment, propietat intel·lectual i innovacions en tecnologia legal"
     },
-    startup: {
+    entrepreneurs: {
       title: "Fundadors i Emprenedors",
       description: "Comparteix idees sobre com crear startups, fundraising, escalat i estratègies emprenedores"
     },

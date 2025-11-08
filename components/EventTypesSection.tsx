@@ -40,9 +40,9 @@ export function EventTypesSection() {
     },
     {
       icon: Rocket,
-      titleKey: 'clubs.startup.title',
-      email: "startup@mindhub.club",
-      descriptionKey: 'clubs.startup.description',
+      titleKey: 'clubs.entrepreneurs.title',
+      email: "entrepreneurs@mindhub.club",
+      descriptionKey: 'clubs.entrepreneurs.description',
       color: "text-red-600",
       bgColor: "bg-red-50"
     },
