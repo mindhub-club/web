@@ -78,6 +78,7 @@ export default {
       contactRequired: "Introduce un medio de contacto.",
       invalidEmail: "Introduce un email válido.",
       invalidWhatsapp: "Introduce un número de WhatsApp válido.",
+      imIn: "¡Me apunto!",
       submit: "Avísadme!",
       submitting: "Enviando...",
       success: "¡Gracias! Te avisaremos cuando se abran las inscripciones.",

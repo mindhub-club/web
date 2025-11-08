@@ -76,6 +76,7 @@ export default {
       contactRequired: "Bitte gib eine Kontaktmöglichkeit an.",
       invalidEmail: "Bitte eine gültige E-Mail angeben.",
       invalidWhatsapp: "Bitte eine gültige WhatsApp-Nummer.",
+      imIn: "Ich bin dabei!",
       submit: "Benachrichtigen",
       submitting: "Sende...",
       success: "Danke! Wir informieren dich, wenn die Anmeldung öffnet.",

@@ -78,6 +78,7 @@ export default {
       contactRequired: "Introdueix un mitjà de contacte.",
       invalidEmail: "Introdueix un email vàlid.",
       invalidWhatsapp: "Introdueix un número de WhatsApp vàlid.",
+      imIn: "M'hi apunto!",
       submit: "Avisa'm!",
       submitting: "Enviant...",
       success: "Gràcies! T'avisarem quan s'obrin les inscripcions.",
@@ -216,4 +217,3 @@ export default {
     }
   }
 } as const;
-

@@ -27,6 +27,7 @@ type PreRegState = {
   eventType: string;
   eventLocation?: string;
   eventTime?: string;
+  status?: 'open' | 'planned';
 } | null;
 
 export function LocationsSection() {
@@ -47,7 +48,7 @@ export function LocationsSection() {
           topic: t('locations.topics.startup'),
           date: "2025-11-14",
           type: "startup",
-          status: 'planned',
+          status: 'open',
           time: "18:00",
           location: "Reverb Mallorca",
           price: { amount: 0, currency: 'EUR' },
@@ -268,8 +269,9 @@ export function LocationsSection() {
     eventType,
     eventLocation,
     eventTime,
+    status,
     onSubmitted
-  }: { city: string; eventTopic: string; eventDate: string; eventType: string; eventLocation?: string; eventTime?: string; onSubmitted?: () => void }) {
+  }: { city: string; eventTopic: string; eventDate: string; eventType: string; eventLocation?: string; eventTime?: string; status?: 'open' | 'planned'; onSubmitted?: () => void }) {
     const [name, setName] = useState("");
     const [method, setMethod] = useState<"email" | "whatsapp">("whatsapp");
     const [contact, setContact] = useState("");
@@ -423,7 +425,9 @@ export function LocationsSection() {
           </div>
         </div>
         <Button type="submit" variant="brand" onClick={validate} disabled={submitting} className="w-full sm:w-auto">
-          {submitting ? t('locations.form.submitting') : t('locations.form.submit')}
+          {submitting
+            ? t('locations.form.submitting')
+            : (status === 'open' ? t('locations.form.imIn') : t('locations.form.submit'))}
         </Button>
         {result === 'success' && (
           <p className="text-xs text-emerald-700">{t('locations.form.success')}</p>
@@ -603,12 +607,12 @@ export function LocationsSection() {
                       const Icon = getTopicIcon(event.type);
                       const eventUrl = (event as any).url as string | undefined;
                       const isOpenLink = event.status === 'open' && !!eventUrl;
-                      const isPlanned = event.status === 'planned';
-                      const clickable = isOpenLink || isPlanned;
-                      const Wrapper: any = isOpenLink ? 'a' : (isPlanned ? 'button' : 'div');
+                      const shouldOpenPopup = event.status === 'planned' || (event.status === 'open' && !eventUrl);
+                      const clickable = isOpenLink || shouldOpenPopup;
+                      const Wrapper: any = isOpenLink ? 'a' : (shouldOpenPopup ? 'button' : 'div');
                       const wrapperProps: any = isOpenLink
                         ? { href: eventUrl, target: "_blank", rel: "noopener noreferrer", 'aria-label': `${event.topic} — ${t('locations.upcoming')}` }
-                        : isPlanned
+                        : shouldOpenPopup
                           ? { type: 'button', onClick: () => setOpenPrereg({
                                 city: location.name,
                                 eventTopic: event.topic,
@@ -616,6 +620,7 @@ export function LocationsSection() {
                                 eventType: (event as any).type,
                                 eventLocation: (event as any).location,
                                 eventTime: (event as any).time,
+                                status: (event as any).status,
                               }) }
                           : {};
                       const formKey = `${index}-${eventIndex}`;
@@ -685,7 +690,6 @@ export function LocationsSection() {
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
                             <h5 className="text-base sm:text-lg font-medium truncate">{openPrereg.eventTopic}</h5>
-                            <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">{t('locations.preregister')}</div>
                             <div className="mt-2 text-xs text-muted-foreground">
                               <div className="flex items-center gap-2 flex-wrap">
                                 {openPrereg.city && (<><span className="inline-flex items-center gap-1"><Globe className="w-3 h-3" /> {openPrereg.city}</span><span>•</span></>)}
@@ -706,6 +710,7 @@ export function LocationsSection() {
                           eventType={openPrereg.eventType}
                           eventLocation={openPrereg.eventLocation}
                           eventTime={openPrereg.eventTime}
+                          status={openPrereg.status}
                           onSubmitted={() => setOpenPrereg(null)}
                         />
                       </div>

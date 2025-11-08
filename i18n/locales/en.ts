@@ -76,6 +76,7 @@ export default {
       contactRequired: "Please enter a contact.",
       invalidEmail: "Enter a valid email address.",
       invalidWhatsapp: "Enter a valid WhatsApp number.",
+      imIn: "I'm in!",
       submit: "Notify me!",
       submitting: "Sending...",
       success: "Thanks! We’ll notify you when RSVP opens.",
