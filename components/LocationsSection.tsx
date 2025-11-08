@@ -45,16 +45,6 @@ export function LocationsSection() {
       nextEvents: [
         {
           topic: t('locations.topics.startup'),
-          date: "2025-11-07",
-          type: "startup",
-          status: 'open',
-          time: "18:00",
-          location: "Reverb Mallorca",
-          url: "https://www.linkedin.com/events/mindhubxemprendedores-aut-nomos7390817969087352832/",
-          price: { amount: 0, currency: 'EUR' }
-        },
-        {
-          topic: t('locations.topics.startup'),
           date: "2025-11-14",
           type: "startup",
           status: 'planned',
@@ -65,6 +55,15 @@ export function LocationsSection() {
         {
           topic: t('locations.topics.startup'),
           date: "2025-11-21",
+          type: "startup",
+          status: 'planned',
+          time: "18:00",
+          location: "Reverb Mallorca",
+          price: { amount: 0, currency: 'EUR' },
+        },
+        {
+          topic: t('locations.topics.startup'),
+          date: "2025-11-28",
           type: "startup",
           status: 'planned',
           time: "18:00",
