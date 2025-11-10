@@ -3,9 +3,10 @@ import { CloudinaryImage } from "./CloudinaryImage";
 import { MapPin, Users, Calendar, Clock, Globe, Brain, Code, Palette, Scale, Rocket, Lightbulb, ArrowUpRight, X, Mail, AlarmClock, ExternalLink, DollarSign, Euro, PoundSterling, IndianRupee, JapaneseYen } from "lucide-react";
 import { CALLING_CODES, isoToFlag } from "../lib/callingCodes";
 import * as Popover from "@radix-ui/react-popover";
+import { Drawer } from 'vaul';
 import { Button } from "./ui/button";
 import { useI18n } from "../i18n/I18nProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type ImageSettings = {
   url: string;
@@ -33,7 +34,33 @@ type PreRegState = {
 export function LocationsSection() {
   const { t, get, locale } = useI18n();
   const [openPrereg, setOpenPrereg] = useState<PreRegState>(null);
+  // Persist pre-register form state only while tab is open (in-memory)
+  const [preregPersist, setPreregPersist] = useState<{ name: string; method: 'email' | 'whatsapp'; contact: string; countryIso?: string }>({ name: '', method: 'whatsapp', contact: '', countryIso: undefined });
+  // Drawer height no longer needs to expand when country picker opens
   const PREREG_WEBHOOK = "https://n8n.mipigu.com/webhook/mindhub-preregister";
+
+  // Lock body scroll when modal is open (prevents background jumping on mobile)
+  useEffect(() => {
+    if (!openPrereg) return;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const original = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+      overflow: document.body.style.overflow,
+    } as const;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.position = original.position;
+      document.body.style.top = original.top;
+      document.body.style.width = original.width;
+      document.body.style.overflow = original.overflow;
+      window.scrollTo(0, scrollY);
+    };
+  }, [openPrereg]);
   const locations = [
     {
       id: 'mallorca',
@@ -271,11 +298,37 @@ export function LocationsSection() {
     eventLocation,
     eventTime,
     status,
-    onSubmitted
-  }: { city: string; eventTopic: string; eventDate: string; eventType: string; eventLocation?: string; eventTime?: string; status?: 'open' | 'planned'; onSubmitted?: () => void }) {
-    const [name, setName] = useState("");
-    const [method, setMethod] = useState<"email" | "whatsapp">("whatsapp");
-    const [contact, setContact] = useState("");
+    onSubmitted,
+    initialValues,
+  }: { city: string; eventTopic: string; eventDate: string; eventType: string; eventLocation?: string; eventTime?: string; status?: 'open' | 'planned'; onSubmitted?: () => void; initialValues: { name: string; method: 'email' | 'whatsapp'; contact: string; countryIso?: string }; }) {
+    const inferIsoFromNavigator = () => {
+      try {
+        const tryTags = Array.isArray(navigator.languages) && navigator.languages.length ? navigator.languages : [navigator.language];
+        for (const tag of tryTags) {
+          if (!tag) continue;
+          const parts: string[] = tag.replace('_', '-').split('-');
+          // Find a 2-letter region code
+          const region = parts.find(p => /^[A-Za-z]{2}$/.test(p));
+          if (region) return region.toUpperCase();
+          const lang = parts[0]?.toLowerCase();
+          if (lang === 'de') return 'DE';
+          if (lang === 'es' || lang === 'ca') return 'ES';
+          if (lang === 'fr') return 'FR';
+          if (lang === 'it') return 'IT';
+          if (lang === 'pt') return 'PT';
+          if (lang === 'en') {
+            // Can't distinguish, skip to next or IP fallback
+          }
+        }
+      } catch {}
+      return undefined;
+    };
+    const navigatorIso = inferIsoFromNavigator();
+    const initialIso = initialValues?.countryIso || navigatorIso || 'ES';
+
+    const [name, setName] = useState<string>(() => initialValues?.name || "");
+    const [method, setMethod] = useState<"email" | "whatsapp">(() => initialValues?.method || "whatsapp");
+    const [contact, setContact] = useState<string>(() => initialValues?.contact || "");
     const [submitting, setSubmitting] = useState(false);
     const [result, setResult] = useState<null | "success" | "error">(null);
     const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
@@ -284,20 +337,29 @@ export function LocationsSection() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     // E.164 format: +<countrycode><national number>, typically 8-15 digits total excluding '+'
     const phoneRegex = /^\+[1-9]\d{7,14}$/;
-    const defaultIso = (() => {
-      try {
-        const lang = (navigator?.language || 'en').toLowerCase();
-        if (lang.startsWith('de')) return 'DE';
-        if (lang.startsWith('es') || lang.startsWith('ca')) return 'ES';
-        if (lang.startsWith('fr')) return 'FR';
-        if (lang.startsWith('it')) return 'IT';
-        if (lang.endsWith('-at')) return 'AT';
-        if (lang.endsWith('-gb')) return 'GB';
-        if (lang.endsWith('-us')) return 'US';
-      } catch {}
-      return 'ES';
-    })();
-    const [countryIso, setCountryIso] = useState<string>(defaultIso);
+    const [countryIso, setCountryIso] = useState<string>(initialIso);
+
+    // If navigator didn't provide a region, fall back to IP-based country
+    useEffect(() => {
+      if (typeof window === 'undefined') return;
+      if (initialValues?.countryIso) return; // respect provided selection
+      if (navigatorIso) return; // already inferred from navigator
+      let cancelled = false;
+      const fetchIpCountry = async () => {
+        try {
+          const res = await fetch('https://ipapi.co/json/');
+          if (!res.ok) return;
+          const data = await res.json();
+          const iso = (data && (data.country || data.country_code))?.toUpperCase();
+          if (!cancelled && iso && typeof iso === 'string' && iso.length === 2) {
+            setCountryIso(iso);
+          }
+        } catch {}
+      };
+      fetchIpCountry();
+      return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const validate = () => {
       const next: { name?: string; contact?: string } = {};
@@ -359,21 +421,21 @@ export function LocationsSection() {
     };
 
     return (
-      <form onSubmit={handleSubmit} className="mt-2 p-3 bg-muted/40 rounded-md space-y-3">
+      <form onSubmit={handleSubmit} className="mt-2 p-3 pb-10 bg-muted/40 rounded-md space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
-            <input
-              type="text"
-              name="name"
-              autoComplete="name"
-              autoCapitalize="words"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              onBlur={() => { if (attempted) validate(); }}
-              placeholder={t('locations.form.namePlaceholder')}
-              aria-invalid={!!errors.name}
-              className={`w-full rounded border bg-background px-3 py-2 text-sm ${errors.name ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'}`}
-            />
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+                autoCapitalize="words"
+                value={name}
+                onChange={(e) => { setName(e.target.value); }}
+                onBlur={() => { if (attempted) validate(); }}
+                placeholder={t('locations.form.namePlaceholder')}
+                aria-invalid={!!errors.name}
+                className={`w-full rounded border bg-background px-3 py-2 text-base sm:text-sm ${errors.name ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'}`}
+              />
             {errors.name && <p className="mt-1 text-xs text-red-600">{errors.name}</p>}
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -395,7 +457,7 @@ export function LocationsSection() {
             </button>
           </div>
           <div className="sm:col-span-2">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-stretch">
               {method === 'whatsapp' && (
                 <CountryPicker
                   countryIso={countryIso}
@@ -415,11 +477,11 @@ export function LocationsSection() {
                 name={method === 'email' ? 'email' : 'tel-national'}
                 autoComplete={method === 'email' ? 'email' : 'tel-national'}
                 inputMode={method === 'email' ? undefined : 'numeric'}
-                onChange={(e) => setContact(e.target.value)}
+                onChange={(e) => { setContact(e.target.value); }}
                 onBlur={() => { if (attempted) validate(); }}
                 placeholder={method === 'email' ? t('locations.form.emailPlaceholder') : t('locations.form.whatsappPlaceholder')}
                 aria-invalid={!!errors.contact}
-                className={`flex-1 rounded border bg-background px-3 py-2 text-sm ${errors.contact ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'}`}
+                className={`w-full flex-1 min-w-0 rounded border bg-background px-3 py-2 text-base sm:text-sm ${errors.contact ? 'border-red-500 focus-visible:ring-red-500' : 'border-input'}`}
               />
             </div>
             {errors.contact && <p className="mt-1 text-xs text-red-600">{errors.contact}</p>}
@@ -443,6 +505,46 @@ export function LocationsSection() {
   function CountryPicker({ countryIso, onChange }: { countryIso: string; onChange: (iso: string) => void }) {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
+    const [isMobile, setIsMobile] = useState<boolean>(() => {
+      if (typeof window === 'undefined') return false;
+      try {
+        const coarse = window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(hover: none)').matches;
+        const small = window.matchMedia('(max-width: 767px)').matches;
+        return coarse || small;
+      } catch {
+        return false;
+      }
+    });
+
+    useEffect(() => {
+      if (typeof window === 'undefined') return;
+      const mqCoarse = window.matchMedia('(pointer: coarse)');
+      const mqHoverNone = window.matchMedia('(hover: none)');
+      const mqSmall = window.matchMedia('(max-width: 767px)');
+      const update = () => setIsMobile(mqCoarse.matches || mqHoverNone.matches || mqSmall.matches);
+      try {
+        mqCoarse.addEventListener('change', update);
+        mqHoverNone.addEventListener('change', update);
+        mqSmall.addEventListener('change', update);
+      } catch {
+        // Safari fallback
+        mqCoarse.addListener(update);
+        mqHoverNone.addListener(update);
+        mqSmall.addListener(update);
+      }
+      update();
+      return () => {
+        try {
+          mqCoarse.removeEventListener('change', update);
+          mqHoverNone.removeEventListener('change', update);
+          mqSmall.removeEventListener('change', update);
+        } catch {
+          mqCoarse.removeListener(update);
+          mqHoverNone.removeListener(update);
+          mqSmall.removeListener(update);
+        }
+      };
+    }, []);
     const selected = CALLING_CODES.find((c) => c.iso2 === countryIso) || CALLING_CODES.find((c) => c.iso2 === 'ES');
     const base = (() => {
       const seen = new Set<string>();
@@ -464,25 +566,80 @@ export function LocationsSection() {
       );
     });
 
-    return (
-      <Popover.Root open={open} onOpenChange={setOpen}>
-        <Popover.Trigger asChild>
-          <button type="button" className="inline-flex items-center gap-2 rounded border border-input bg-background px-2 py-2 text-sm w-44 sm:w-56 justify-between">
-            <span className="inline-flex items-center gap-2 truncate">
-              <span>{selected ? isoToFlag(selected.iso2) : '🏳️'}</span>
-              <span className="truncate">{selected ? `${selected.country} (${selected.code})` : 'Select country'}</span>
-            </span>
-            <span className="text-muted-foreground">▾</span>
-          </button>
-        </Popover.Trigger>
-        <Popover.Content sideOffset={6} className="z-50 rounded-md border border-input bg-popover p-2 shadow-md w-64 sm:w-80">
+    const Trigger = (
+      <button
+        type="button"
+        className="inline-flex items-center gap-2 rounded border border-input bg-background px-2 py-2 text-sm justify-between shrink-0 whitespace-nowrap"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span className="inline-flex items-center gap-2">
+          <span>{selected ? isoToFlag(selected.iso2) : '🏳️'}</span>
+          <span className="tabular-nums">{selected ? `(${selected.code})` : '(+--)'}</span>
+        </span>
+        <span className="text-muted-foreground">▾</span>
+      </button>
+    );
+
+    return isMobile ? (
+      <Drawer.Root open={open} onOpenChange={(o) => { setOpen(o); }}>
+        <Drawer.Trigger asChild>{Trigger}</Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 bg-black/50" />
+          <Drawer.Content className="fixed inset-x-0 bottom-0 z-50 rounded-t-2xl bg-popover shadow-lg">
+            <div className="mx-auto w-full max-w-xl p-3">
+              <div className="mx-auto mb-2 h-1.5 w-10 rounded-full bg-muted" />
+              <div className="sticky top-0 bg-popover pt-1 pb-2">
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={t('locations.form.searchCountry')}
+                  className="w-full rounded border border-input bg-background px-3 py-2 text-base"
+                  aria-label={t('locations.form.searchCountry')}
+                />
+              </div>
+              <div className="max-h-[70dvh] overflow-auto text-base">
+                {list.map((c) => (
+                  <button
+                    key={`${c.iso2}-${c.code}`}
+                    type="button"
+                    role="option"
+                    aria-selected={c.iso2 === countryIso}
+                    onClick={() => { onChange(c.iso2); setOpen(false); setQuery(""); }}
+                    className={`w-full text-left px-3 py-2 rounded inline-flex items-center gap-3 ${c.iso2 === countryIso ? 'bg-muted' : 'hover:bg-muted'}`}
+                  >
+                    <span>{isoToFlag(c.iso2)}</span>
+                    <span className="flex-1 truncate">{c.country}</span>
+                    <span className="shrink-0 text-muted-foreground">{c.code}</span>
+                  </button>
+                ))}
+                {list.length === 0 && (
+                  <div className="px-3 py-3 text-muted-foreground">{t('locations.form.noResults')}</div>
+                )}
+              </div>
+              <div className="h-6" />
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
+    ) : (
+      <Popover.Root open={open} onOpenChange={(o) => { setOpen(o); }}>
+        <Popover.Trigger asChild>{Trigger}</Popover.Trigger>
+        <Popover.Content
+          side="bottom"
+          align="center"
+          sideOffset={6}
+          collisionPadding={8}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          className="z-50 rounded-md border border-input bg-popover p-2 shadow-md w-[min(28rem,92vw)] max-w-[92vw]"
+        >
           <div className="mb-2">
             <input
-              autoFocus
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('locations.form.searchCountry')}
               className="w-full rounded border border-input bg-background px-2 py-1.5 text-sm"
+              aria-label={t('locations.form.searchCountry')}
             />
           </div>
           <div className="max-h-64 overflow-auto text-sm">
@@ -490,8 +647,10 @@ export function LocationsSection() {
               <button
                 key={`${c.iso2}-${c.code}`}
                 type="button"
+                role="option"
+                aria-selected={c.iso2 === countryIso}
                 onClick={() => { onChange(c.iso2); setOpen(false); setQuery(""); }}
-                className={`w-full text-left px-2 py-1.5 rounded hover:bg-muted inline-flex items-center gap-2 ${c.iso2 === countryIso ? 'bg-muted' : ''}`}
+                className={`w-full text-left px-2 py-1.5 rounded inline-flex items-center gap-2 ${c.iso2 === countryIso ? 'bg-muted' : 'hover:bg-muted'}`}
               >
                 <span>{isoToFlag(c.iso2)}</span>
                 <span className="flex-1 truncate">{c.country}</span>
@@ -685,9 +844,9 @@ export function LocationsSection() {
                   </div>
                   {/* Modal for pre-registration */}
                   {openPrereg && (
-                    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+                    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center h-[100dvh] overscroll-contain">
                       <div className="absolute inset-0 bg-black/50" onClick={() => setOpenPrereg(null)} />
-                      <div className="relative w-full sm:max-w-lg bg-background rounded-t-2xl sm:rounded-xl p-4 sm:p-6 shadow-lg">
+                      <div className={`relative w-full sm:max-w-lg bg-background rounded-t-2xl sm:rounded-xl p-4 sm:p-6 shadow-lg max-h-[92dvh] overflow-auto pb-[calc(env(safe-area-inset-bottom)+96px)]`}>
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
                             <h5 className="text-base sm:text-lg font-medium truncate">{openPrereg.eventTopic}</h5>
@@ -713,6 +872,7 @@ export function LocationsSection() {
                           eventTime={openPrereg.eventTime}
                           status={openPrereg.status}
                           onSubmitted={() => setOpenPrereg(null)}
+                          initialValues={preregPersist}
                         />
                       </div>
                     </div>
