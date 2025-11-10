@@ -93,7 +93,7 @@ export function LocationsSection() {
           topic: t('locations.topics.entrepreneurs'),
           date: "2025-11-21",
           type: "entrepreneurs",
-          status: 'planned',
+          status: 'open',
           time: "18:00",
           location: "Café Puck",
           price: { amount: 0, currency: 'EUR' }
