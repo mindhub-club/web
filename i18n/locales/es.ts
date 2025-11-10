@@ -84,8 +84,11 @@ export default {
       imIn: "¡Me apunto!",
       submit: "Avísadme!",
       submitting: "Enviando...",
-      success: "¡Gracias! Te avisaremos cuando se abran las inscripciones.",
+      success: "¡Gracias! Nos pondremos en contacto contigo en breve por tu método de contacto preferido.",
       error: "Algo salió mal. Inténtalo de nuevo.",
+      addToCalendar: "¡No te olvides!",
+      addToGoogleCalendar: "Añadir a Google Calendar",
+      downloadIcs: "Descargar .ics",
       close: "Cerrar",
       searchCountry: "Buscar país",
       noResults: "Sin resultados"

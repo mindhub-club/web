@@ -384,6 +384,83 @@ export function LocationsSection() {
       return valid;
     };
 
+    // Helpers to build calendar artifacts after successful submission
+    const pad2 = (n: number) => String(n).padStart(2, '0');
+    // Export as UTC to avoid clients interpreting as GMT then shifting again
+    const formatIcsDateTime = (d: Date) => `${d.getUTCFullYear()}${pad2(d.getUTCMonth() + 1)}${pad2(d.getUTCDate())}T${pad2(d.getUTCHours())}${pad2(d.getUTCMinutes())}${pad2(d.getUTCSeconds())}Z`;
+    const formatIcsDate = (d: Date) => `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}`;
+
+    const getEventDateTimes = () => {
+      const base = parseEventDate(eventDate);
+      if (!base) return null;
+      if (eventTime && /^\d{1,2}:\d{2}$/.test(eventTime)) {
+        const [hh, mm] = eventTime.split(':').map((x) => parseInt(x, 10));
+        const start = new Date(base);
+        start.setHours(isFinite(hh) ? hh : 18, isFinite(mm) ? mm : 0, 0, 0);
+        const end = new Date(start.getTime() + 2 * 60 * 60 * 1000); // default 2h duration
+        return { allDay: false as const, start, end };
+      }
+      // All-day: end date is next day per RFC5545
+      const start = new Date(base.getFullYear(), base.getMonth(), base.getDate());
+      const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+      return { allDay: true as const, start, end };
+    };
+
+    const buildGoogleCalendarUrl = () => {
+      const dt = getEventDateTimes();
+      const title = encodeURIComponent(`${eventTopic}${city ? ` — ${city}` : ''}`);
+      const details = encodeURIComponent('MindHub Club');
+      const location = encodeURIComponent(eventLocation || city || '');
+      if (!dt) return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}`;
+      const dates = dt.allDay
+        ? `${formatIcsDate(dt.start)}/${formatIcsDate(dt.end)}`
+        : `${formatIcsDateTime(dt.start)}/${formatIcsDateTime(dt.end)}`;
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+    };
+
+    const buildIcs = () => {
+      const dt = getEventDateTimes();
+      const uid = `${Date.now()}-${Math.random().toString(36).slice(2)}@mindhub.club`;
+      const lines: string[] = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//MindHub Club//Event//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${uid}`,
+        `SUMMARY:${(eventTopic || '').replace(/\n/g, ' ')}`,
+        `DESCRIPTION:${'MindHub Club'}`,
+        `LOCATION:${((eventLocation || city || '')).replace(/\n/g, ' ')}`,
+      ];
+      if (dt) {
+        if (dt.allDay) {
+          lines.push(`DTSTART;VALUE=DATE:${formatIcsDate(dt.start)}`);
+          lines.push(`DTEND;VALUE=DATE:${formatIcsDate(dt.end)}`);
+        } else {
+          lines.push(`DTSTART:${formatIcsDateTime(dt.start)}`);
+          lines.push(`DTEND:${formatIcsDateTime(dt.end)}`);
+        }
+      }
+      lines.push('END:VEVENT', 'END:VCALENDAR');
+      return lines.join('\r\n');
+    };
+
+    const downloadIcs = () => {
+      try {
+        const blob = new Blob([buildIcs()], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const safeCity = (city || '').toString().toLowerCase().replace(/\s+/g, '-') || 'event';
+        a.href = url;
+        a.download = `mindhub-${safeCity}.ics`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      } catch {}
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       setAttempted(true);
@@ -412,7 +489,7 @@ export function LocationsSection() {
         setResult("success");
         setName("");
         setContact("");
-        if (onSubmitted) onSubmitted();
+        // Keep the modal open to show success and calendar options
       } catch (err) {
         setResult("error");
       } finally {
@@ -422,6 +499,7 @@ export function LocationsSection() {
 
     return (
       <form onSubmit={handleSubmit} className="mt-2 p-3 pb-10 bg-muted/40 rounded-md space-y-3">
+        {result !== 'success' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
               <input
@@ -487,14 +565,36 @@ export function LocationsSection() {
             {errors.contact && <p className="mt-1 text-xs text-red-600">{errors.contact}</p>}
           </div>
         </div>
-        <Button type="submit" variant="brand" onClick={validate} disabled={submitting} className="w-full sm:w-auto">
-          {submitting
-            ? t('locations.form.submitting')
-            : (status === 'open' ? t('locations.form.imIn') : t('locations.form.submit'))}
-        </Button>
-        {result === 'success' && (
-          <p className="text-xs text-emerald-700">{t('locations.form.success')}</p>
         )}
+
+        {result !== 'success' && (
+          <Button type="submit" variant="brand" onClick={validate} disabled={submitting} className="w-full sm:w-auto">
+            {submitting
+              ? t('locations.form.submitting')
+              : (status === 'open' ? t('locations.form.imIn') : t('locations.form.submit'))}
+          </Button>
+        )}
+
+        {result === 'success' && (
+          <div className="space-y-3">
+            <p className="text-sm text-emerald-700">{t('locations.form.success')}</p>
+            <div className="space-y-2">
+              <div className="text-sm font-medium flex items-center gap-2">
+                <Calendar className="w-4 h-4" /> {t('locations.form.addToCalendar')}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <a href={buildGoogleCalendarUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-3 py-2 rounded-md border bg-background hover:bg-muted">
+                  <span>{t('locations.form.addToGoogleCalendar')}</span>
+                  <ExternalLink className="w-4 h-4 opacity-70" />
+                </a>
+                <button type="button" onClick={downloadIcs} className="inline-flex items-center gap-2 px-3 py-2 rounded-md border bg-background hover:bg-muted">
+                  <span>{t('locations.form.downloadIcs')}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {result === 'error' && (
           <p className="text-xs text-red-600">{t('locations.form.error')}</p>
         )}

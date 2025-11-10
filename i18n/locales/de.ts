@@ -82,8 +82,11 @@ export default {
       imIn: "Ich bin dabei!",
       submit: "Benachrichtigen",
       submitting: "Sende...",
-      success: "Danke! Wir informieren dich, wenn die Anmeldung öffnet.",
+      success: "Danke! Wir melden uns in Kürze über deine bevorzugte Kontaktmethode.",
       error: "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      addToCalendar: "Zum Kalender hinzufügen",
+      addToGoogleCalendar: "Zu Google Kalender hinzufügen",
+      downloadIcs: ".ics herunterladen",
       close: "Schließen",
       searchCountry: "Land suchen",
       noResults: "Keine Treffer"

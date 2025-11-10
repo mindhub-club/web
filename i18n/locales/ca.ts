@@ -84,8 +84,11 @@ export default {
       imIn: "M'hi apunto!",
       submit: "Avisa'm!",
       submitting: "Enviant...",
-      success: "Gràcies! T'avisarem quan s'obrin les inscripcions.",
+      success: "Gràcies! Ens posarem en contacte amb tu aviat pel teu mètode de contacte preferit.",
       error: "Alguna cosa ha fallat. Torna-ho a provar.",
+      addToCalendar: "No t'oblidis!",
+      addToGoogleCalendar: "Afegir a Google Calendar",
+      downloadIcs: "Descarregar .ics",
       close: "Tancar",
       searchCountry: "Cerca país",
       noResults: "Sense resultats"

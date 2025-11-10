@@ -82,8 +82,11 @@ export default {
       imIn: "I'm in!",
       submit: "Notify me!",
       submitting: "Sending...",
-      success: "Thanks! We’ll notify you when RSVP opens.",
+      success: "Thanks! We’ll get in touch shortly via your preferred contact method.",
       error: "Something went wrong. Please try again.",
+      addToCalendar: "Don't forget!",
+      addToGoogleCalendar: "Add to Google Calendar",
+      downloadIcs: "Download .ics",
       close: "Close",
       searchCountry: "Search country",
       noResults: "No results"
