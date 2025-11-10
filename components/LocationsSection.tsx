@@ -112,7 +112,7 @@ export function LocationsSection() {
         height: 800,
         crop: 'fill'
       } as ImageSettings,
-      members: 20,
+      members: 30,
       sessions: t('locationsData.munich.sessions'),
       languages: [t('languageNames.german'), t('languageNames.english')],
       nextEvents: [
