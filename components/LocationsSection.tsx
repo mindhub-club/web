@@ -109,8 +109,8 @@ export function LocationsSection() {
       country: t('locationsData.munich.country'),
       image: {
         url: "https://res.cloudinary.com/mipigu/image/upload/v1761731445/mindhub/munich.jpg",
-        crop: 'crop',
-        gravity: 'north',
+        height: 800,
+        crop: 'fill'
       } as ImageSettings,
       members: 20,
       sessions: t('locationsData.munich.sessions'),
@@ -682,7 +682,7 @@ export function LocationsSection() {
               <div className="relative h-[236px] overflow-hidden">
                 {(() => {
                   const img = location.image as string | ImageSettings;
-                  const defaults = { height: 600 as number, crop: 'fit' as const };
+                  const defaults = { crop: 'fit' as const };
                   if (typeof img === 'string') {
                     return (
                       <CloudinaryImage
@@ -697,7 +697,7 @@ export function LocationsSection() {
                     <CloudinaryImage
                       src={img.url}
                       width={img.width}
-                      height={img.height ?? defaults.height}
+                      height={img.height}
                       aspectRatio={img.aspectRatio}
                       crop={img.crop ?? defaults.crop}
                       gravity={img.gravity}
