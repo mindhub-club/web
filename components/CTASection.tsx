@@ -6,7 +6,7 @@ import { useI18n } from "../i18n/I18nProvider";
 export function CTASection() {
   const { t } = useI18n();
   return (
-    <section className="py-24 bg-primary text-primary-foreground">
+    <section className="py-16 bg-primary text-primary-foreground">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-3xl lg:text-5xl">{t('cta.heading')}</h2>

@@ -27,12 +27,12 @@ function AppContent() {
             <EventTypesSection />
           </div>
           
-          <div id="map">
-            <InteractiveMap />
-          </div>
-          
           <div id="locations">
           <LocationsSection />
+          </div>
+
+          <div id="map">
+            <InteractiveMap />
           </div>
           
           <div id="benefits">
