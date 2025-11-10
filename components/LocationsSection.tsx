@@ -682,7 +682,7 @@ export function LocationsSection() {
               <div className="relative h-[236px] overflow-hidden">
                 {(() => {
                   const img = location.image as string | ImageSettings;
-                  const defaults = { height: 600 as number, crop: 'fill' as const };
+                  const defaults = { height: 600 as number, crop: 'fit' as const };
                   if (typeof img === 'string') {
                     return (
                       <CloudinaryImage
