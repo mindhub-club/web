@@ -95,7 +95,8 @@ export default {
       planned: "Programado"
     },
     topics: {
-      entrepreneurs: "Emprendedores, Fundadores, Empresarios, Visionarios, y más."
+      entrepreneurs: "Emprendedores, Fundadores, Empresarios, Visionarios, y más.",
+      engineering: "Ingenieros de Software, Desarrolladores, Arquitectos, DevOps, QA y más."
     }
   },
   languageNames: {

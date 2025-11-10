@@ -45,6 +45,15 @@ export function LocationsSection() {
       languages: [t('languageNames.catalan'), t('languageNames.spanish'), t('languageNames.english')],
       nextEvents: [
         {
+          topic: t('locations.topics.engineering'),
+          date: "2025-11-13",
+          type: "engineering",
+          status: 'open',
+          time: "18:00",
+          location: "Reverb Mallorca",
+          price: { amount: 0, currency: 'EUR' },
+        },
+        {
           topic: t('locations.topics.entrepreneurs'),
           date: "2025-11-14",
           type: "entrepreneurs",
@@ -62,15 +71,6 @@ export function LocationsSection() {
           location: "Reverb Mallorca",
           price: { amount: 0, currency: 'EUR' },
         },
-        {
-          topic: t('locations.topics.entrepreneurs'),
-          date: "2025-11-28",
-          type: "entrepreneurs",
-          status: 'planned',
-          time: "18:00",
-          location: "Reverb Mallorca",
-          price: { amount: 0, currency: 'EUR' },
-        }
       ],
       description: t('locationsData.mallorca.description'),
       highlights: (get<string[]>('locationsData.mallorca.highlights') || []),

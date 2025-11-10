@@ -93,7 +93,8 @@ export default {
       planned: "Geplant"
     },
     topics: {
-      entrepreneurs: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr."
+      entrepreneurs: "Unternehmer:innen, Gründer:innen, Geschäftsinhaber:innen, Visionär:innen und mehr.",
+      engineering: "Softwareingenieur:innen, Entwickler:innen, Architekt:innen, DevOps, QA und mehr."
     }
   },
   languageNames: {

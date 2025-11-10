@@ -95,7 +95,8 @@ export default {
       planned: "Programat"
     },
     topics: {
-      entrepreneurs: "Emprenedors, Fundadors, Empresaris, Visionaris i més."
+      entrepreneurs: "Emprenedors, Fundadors, Empresaris, Visionaris i més.",
+      engineering: "Enginyers de Programari, Desenvolupadors, Arquitectes, DevOps, QA i més."
     }
   },
   languageNames: {

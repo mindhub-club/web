@@ -94,7 +94,8 @@ export default {
       planned: "Scheduled"
     },
     topics: {
-      entrepreneurs: "Entrepreneurs, Founders, Business Owners, Visionaries, and more."
+      entrepreneurs: "Entrepreneurs, Founders, Business Owners, Visionaries, and more.",
+      engineering: "Software Engineers, Developers, Architects, DevOps, QA, and more."
     }
   },
   languageNames: {
