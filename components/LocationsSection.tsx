@@ -95,7 +95,6 @@ export function LocationsSection() {
           type: "entrepreneurs",
           status: 'planned',
           time: "18:00",
-          location: "Reverb Mallorca",
           price: { amount: 0, currency: 'EUR' },
         },
       ],
