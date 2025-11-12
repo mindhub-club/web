@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react';
 import Globe from 'react-globe.gl';
 import * as THREE from 'three';
+import { useI18n } from '../i18n/I18nProvider';
 
 type LocationStatus = 'active' | 'potential' | 'inactive';
 
@@ -38,6 +39,7 @@ export function GlobeMap({
   showPotentialLocations = true,
   customStyles
 }: GlobeMapProps) {
+  const { t } = useI18n();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const globeRef = useRef<any>(null);
   const [size, setSize] = useState<{ w: number; h: number }>({ w: 1, h: 520 });
@@ -45,6 +47,10 @@ export function GlobeMap({
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   // Track whether pointer is hovering the globe container to pause auto-rotation
   const isHoveringRef = useRef(false);
+  // Two-finger scroll hint (touch users attempting one-finger drag)
+  const [showTwoFingerHint, setShowTwoFingerHint] = useState(false);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastHintTsRef = useRef<number>(0);
   // Detect coarse pointer (touch) to tune hit target sizes
   const isCoarsePointer = useMemo(() => {
     try {
@@ -323,6 +329,10 @@ export function GlobeMap({
     const getControls = () => globe.controls?.() || globe.controls;
 
     const onEnter = () => {
+      if (isCoarsePointer) {
+        return;
+      }
+
       isHoveringRef.current = true;
       try {
         const controls = getControls();
@@ -334,6 +344,10 @@ export function GlobeMap({
     };
     
     const onLeave = () => {
+      if (isCoarsePointer) {
+        return;
+      }
+
       isHoveringRef.current = false;
       try {
         const controls = getControls();
@@ -382,6 +396,7 @@ export function GlobeMap({
     const el = containerRef.current;
     if (!el) return;
     const activePointers = new Set<number>();
+    const lastTouchPos = { x: 0, y: 0 } as { x: number; y: number };
     const getEls = () => {
       const globe = globeRef.current;
       const renderer: any = globe?.renderer?.() || globe?.renderer;
@@ -413,6 +428,8 @@ export function GlobeMap({
       // Track active touch pointers but do not block the initial down event.
       // OrbitControls needs the first pointerdown to correctly initialize multi-touch.
       activePointers.add(e.pointerId);
+      lastTouchPos.x = e.clientX;
+      lastTouchPos.y = e.clientY;
       if (activePointers.size >= 2) {
         // When two fingers are down, temporarily disable browser gestures so OrbitControls receives movement
         setTouchAction('none');
@@ -422,6 +439,8 @@ export function GlobeMap({
           el.addEventListener('gesturechange', onGesture as any, { passive: false, capture: true } as any);
           el.addEventListener('touchmove', onTouchMoveBlock as any, { passive: false, capture: true } as any);
         } catch {}
+        // Hide hint when multitouch begins
+        setShowTwoFingerHint(false);
       }
     };
     const onPointerMove = (e: PointerEvent) => {
@@ -430,6 +449,19 @@ export function GlobeMap({
       if (activePointers.size === 1) {
         (e as any).stopImmediatePropagation?.();
         e.stopPropagation();
+        // Show brief hint when user drags with one finger on touch devices
+        try {
+          const dx = Math.abs(e.clientX - lastTouchPos.x);
+          const dy = Math.abs(e.clientY - lastTouchPos.y);
+          const moved = Math.hypot(dx, dy) > 8;
+          const now = Date.now();
+          if (moved && isCoarsePointer && now - lastHintTsRef.current > 6000) {
+            lastHintTsRef.current = now;
+            setShowTwoFingerHint(true);
+            if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+            hintTimerRef.current = setTimeout(() => setShowTwoFingerHint(false), 1800);
+          }
+        } catch {}
       }
     };
     const onPointerUp = (e: PointerEvent) => {
@@ -486,7 +518,7 @@ export function GlobeMap({
         autoRotateResumeTimer.current = setTimeout(() => {
           try {
             controls.autoRotate = true;
-            controls.autoRotateSpeed = isHoveringRef.current ? 0.07 : 0.2;
+            controls.autoRotateSpeed = isHoveringRef.current && !isCoarsePointer ? 0.07 : 0.2;
             controls.update?.();
           } catch {}
         }, 1500);
@@ -500,6 +532,10 @@ export function GlobeMap({
       if (autoRotateResumeTimer.current) {
         clearTimeout(autoRotateResumeTimer.current);
         autoRotateResumeTimer.current = null;
+      }
+      if (hintTimerRef.current) {
+        clearTimeout(hintTimerRef.current);
+        hintTimerRef.current = null;
       }
     };
   }, []);
@@ -610,8 +646,17 @@ export function GlobeMap({
     <div
       ref={containerRef}
       className={className}
-      style={{ width: '100%', maxWidth: '100%', height: '520px', boxSizing: 'border-box', touchAction: 'pan-y pinch-zoom' }}
+      style={{ position: 'relative', width: '100%', maxWidth: '100%', height: '520px', boxSizing: 'border-box', touchAction: 'pan-y pinch-zoom' }}
     >
+      {isCoarsePointer && showTwoFingerHint && (
+        <div
+          aria-live="polite"
+          className="pointer-events-none select-none absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs py-1.5 rounded-full shadow"
+          style={{ zIndex: 10 }}
+        >
+          {t('map.twoFingerScrollHint')}
+        </div>
+      )}
       <Globe
         ref={globeRef}
         width={Math.max(1, size.w)}

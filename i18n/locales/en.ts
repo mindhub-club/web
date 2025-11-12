@@ -28,6 +28,7 @@ export default {
     ctaBody: "Help us expand our network. We're looking for passionate community leaders to establish MindHub chapters across the globe.",
     ctaButton: "Start a Chapter",
     emailLead: "Email us at",
+    twoFingerScrollHint: "Use two fingers to move around",
     cities: {
       munich: "Munich",
       mallorca: "Mallorca"
