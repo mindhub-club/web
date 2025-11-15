@@ -73,7 +73,7 @@ export function LocationsSection() {
       nextEvents: [
         {
           topic: t('locations.topics.engineering'),
-          date: "2025-11-13",
+          date: "2025-11-20",
           type: "engineering",
           status: 'open',
           time: "18:00",
@@ -82,16 +82,16 @@ export function LocationsSection() {
         },
         {
           topic: t('locations.topics.entrepreneurs'),
-          date: "2025-11-14",
+          date: "2025-11-21",
           type: "entrepreneurs",
           status: 'open',
           time: "18:00",
-          location: "Reverb Mallorca",
+          location: "PalmaActiva",
           price: { amount: 0, currency: 'EUR' },
         },
         {
           topic: t('locations.topics.entrepreneurs'),
-          date: "2025-11-21",
+          date: "2025-11-28",
           type: "entrepreneurs",
           status: 'planned',
           time: "18:00",
