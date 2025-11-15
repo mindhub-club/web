@@ -90,6 +90,20 @@ export function HeroSection() {
                 crop: 'fit',
               },
               {
+                url: "https://res.cloudinary.com/mipigu/image/upload/v1763191854/mindhub/IMG_5240_2_maxz3e.jpg",
+                alt: "MindHub @ Mallorca x Software Engineers",
+                dateLabel: formatShortDate("2025-11-13"),
+                eventLabel: t('topicsShort.engineers'),
+                crop: 'fit',
+              },
+              {
+                url: "https://res.cloudinary.com/mipigu/image/upload/v1763191853/mindhub/IMG_5307_swnxjq.jpg",
+                alt: "MindHub @ Mallorca x Entrepreneurs",
+                dateLabel: formatShortDate("2025-11-14"),
+                eventLabel: t('topicsShort.startup'),
+                crop: 'fit',
+              },
+              {
                 url: "https://res.cloudinary.com/mipigu/image/upload/v1762621223/mindhub/IMG_4602_sxkkoe.jpg",
                 alt: "MindHub @ Mallorca x Entrepreneurs",
                 dateLabel: formatShortDate("2025-10-31"),

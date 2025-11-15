@@ -1,6 +1,7 @@
 export default {
   topicsShort: {
-    startup: "Unternehmer:innen",
+    startup: "Gründung",
+    engineers: "Software-Engineering",
   },
   header: {
     brand: "MindHub Club",
