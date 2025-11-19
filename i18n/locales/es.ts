@@ -148,7 +148,21 @@ export default {
     title: "Clubs Especializados",
     blurb: "Únete a comunidades enfocadas en tus intereses profesionales. Cada club tiene identidad propia y un espacio dedicado para conversaciones profundas.",
     suggest: "Sugerir un nuevo club",
-    notFound: "¿No encuentras tu especialidad? Siempre estamos ampliando nuestra oferta de clubs."
+    notFound: "¿No encuentras tu especialidad? Siempre estamos ampliando nuestra oferta de clubs.",
+    form: {
+      placeholder: "¿Qué falta? p.ej. \"Data Engineering\", \"Ciberseguridad\"...",
+      submit: "Enviar sugerencia",
+      submitting: "Enviando...",
+      success: "¡Gracias! Hemos recibido tu sugerencia.",
+      error: "Algo salió mal. Inténtalo de nuevo.",
+      similarIntro: "Ya tenemos clubs que podrían relacionarse con \"{topic}\". ¿Encajaría mejor dentro de alguno de estos?",
+      fitsHere: "Encaja aquí",
+      keepOriginalLabel: "O mantén tu sugerencia como club propio: \"{topic}\"",
+      keepOriginalCta: "Mantener como club nuevo",
+      pendingNote: "Nota: Los nuevos temas deberán aprobarse antes de contar en el ranking público.",
+      resultsTitle: "Top sugerencias (datos simulados)",
+      votesSuffix: "votos"
+    }
   },
   clubs: {
     ai: {

@@ -148,7 +148,21 @@ export default {
     title: "Clubs Especialitzats",
     blurb: "Uneix-te a comunitats enfocades als teus interessos professionals. Cada club té identitat pròpia i un espai dedicat per a converses profundes.",
     suggest: "Suggereix un nou club",
-    notFound: "No trobes la teva especialitat? Estem ampliant contínuament la nostra oferta de clubs."
+    notFound: "No trobes la teva especialitat? Estem ampliant contínuament la nostra oferta de clubs.",
+    form: {
+      placeholder: "Què hi falta? p. ex. \"Data Engineering\", \"Ciberseguretat\"...",
+      submit: "Enviar suggeriment",
+      submitting: "Enviant...",
+      success: "Gràcies! Hem rebut el teu suggeriment.",
+      error: "Alguna cosa ha fallat. Torna-ho a provar.",
+      similarIntro: "Ja tenim clubs que es podrien relacionar amb \"{topic}\". Encabiria millor dins d'algun d'aquests?",
+      fitsHere: "Encaixa aquí",
+      keepOriginalLabel: "O mantén la teva proposta com a club propi: \"{topic}\"",
+      keepOriginalCta: "Mantenir com a club nou",
+      pendingNote: "Nota: Els temes nous s'han d'aprovar abans de comptar al rànquing públic.",
+      resultsTitle: "Top suggeriments (dades simulades)",
+      votesSuffix: "vots"
+    }
   },
   clubs: {
     ai: {

@@ -146,7 +146,21 @@ export default {
     title: "Spezialisierte Clubs",
     blurb: "Tritt fokussierten Communities rund um deine beruflichen Interessen bei. Jeder Club hat eine eigene Identität und einen Raum für tiefgehende Diskussionen.",
     suggest: "Neuen Club vorschlagen",
-    notFound: "Dein Schwerpunkt fehlt? Wir erweitern unser Angebot kontinuierlich."
+    notFound: "Dein Schwerpunkt fehlt? Wir erweitern unser Angebot kontinuierlich.",
+    form: {
+      placeholder: "Was fehlt? z.B. „Data Engineering“, „Cybersecurity“...",
+      submit: "Vorschlag senden",
+      submitting: "Sende...",
+      success: "Danke! Wir haben deinen Vorschlag erhalten.",
+      error: "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+      similarIntro: "Wir haben bereits Clubs, die zu „{topic}“ passen könnten. Würde dein Thema besser in einen dieser Clubs passen?",
+      fitsHere: "Passt hierhin",
+      keepOriginalLabel: "Oder behalte deinen Vorschlag als eigenen Club: „{topic}“",
+      keepOriginalCta: "Als neuen Club behalten",
+      pendingNote: "Hinweis: Neue Themen müssen zuerst freigegeben werden, bevor sie in der öffentlichen Rangliste gezählt werden.",
+      resultsTitle: "Top-Vorschläge (Demo-Daten)",
+      votesSuffix: "Stimmen"
+    }
   },
   clubs: {
     ai: {

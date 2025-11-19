@@ -147,11 +147,25 @@ export default {
     title: "Specialized Clubs",
     blurb: "Join focused communities organized around your professional interests. Each club has its own identity and dedicated space for deep, specialized discussions.",
     suggest: "Suggest a New Club",
-    notFound: "Can't find your specialty? We're always expanding our club offerings."
+    notFound: "Can't find your specialty? We're always expanding our club offerings.",
+    form: {
+      placeholder: "What are we missing?",
+      submit: "Send suggestion",
+      submitting: "Sending...",
+      success: "Thanks for your suggestion!",
+      error: "Something went wrong. Please try again.",
+      similarIntro: "We already have some clubs that might relate to \"{topic}\". Would it fit better inside one of these?",
+      fitsHere: "Fits here",
+      keepOriginalLabel: "Or keep your original suggestion as its own club: \"{topic}\"",
+      keepOriginalCta: "Keep as new club",
+      pendingNote: "Note: New topics need to be approved before they count in the public ranking.",
+      resultsTitle: "Top suggestions",
+      votesSuffix: "votes"
+    }
   },
   clubs: {
     ai: {
-      title: "AI & Machine Learning",
+      title: "AI & Data Science",
       description: "Explore the latest in artificial intelligence, deep learning, and practical ML applications"
     },
     engineering: {
@@ -159,7 +173,7 @@ export default {
       description: "Dive deep into software architecture, best practices, and emerging technologies"
     },
     design: {
-      title: "Designers & UX",
+      title: "Designers & Creatives",
       description: "Discuss user experience design, product design principles, and design thinking methodologies"
     },
     law: {
@@ -167,19 +181,15 @@ export default {
       description: "Navigate legal frameworks, compliance, intellectual property, and legal technology innovations"
     },
     entrepreneurs: {
-      title: "Founders & Entrepreneurs",
+      title: "Entrepreneurs & Founders",
       description: "Share insights on building startups, fundraising, scaling, and entrepreneurial strategies"
     },
     product: {
       title: "Product Managers",
       description: "Learn about product strategy, user research, agile methodologies, and product-market fit"
     },
-    innovation: {
-      title: "Innovation & Strategy",
-      description: "Explore business innovation, strategic planning, and disruptive technologies"
-    },
     marketing: {
-      title: "Digital Marketing",
+      title: "Marketing",
       description: "Discuss growth hacking, digital marketing strategies, and customer acquisition"
     }
   },
